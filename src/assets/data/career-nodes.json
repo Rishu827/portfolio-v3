@@ -1,0 +1,122 @@
+{
+  "nodes": [
+    { "id": "me",          "label": "Rishabh Singhal",         "type": "person",     "group": 0, "radius": 24, "description": "SDE3 at Google. Quantum Computing researcher. Graph theorist." },
+
+    { "id": "qc",          "label": "Quantum Computing",       "type": "skill",      "group": 1, "description": "Qutrit magic state distillation, quantum error correction, stabiliser codes over GF(9)." },
+    { "id": "graph-theory","label": "Graph Theory",            "type": "skill",      "group": 1, "description": "Conflict-free coloring, graphlet analysis, social network analysis, centrality measures." },
+    { "id": "dist-sys",    "label": "Distributed Systems",     "type": "skill",      "group": 1, "description": "Event-driven microservices, fault-tolerant pipelines, high-throughput data ingestion." },
+    { "id": "ml",          "label": "AI / Machine Learning",   "type": "skill",      "group": 1, "description": "MTech AI/ML at BITS Pilani. Cluster-based prediction, network analysis." },
+
+    { "id": "angular",     "label": "Angular",                 "type": "skill",      "group": 2, "description": "Used at Keysight, DPF, and this portfolio. Angular 21 zoneless signals." },
+    { "id": "typescript",  "label": "TypeScript",              "type": "skill",      "group": 2, "description": "Primary frontend language across all roles." },
+    { "id": "java",        "label": "Java",                    "type": "skill",      "group": 2, "description": "Core backend language at Amazon. Microservices, AWS SDK." },
+    { "id": "python",      "label": "Python",                  "type": "skill",      "group": 2, "description": "Research (quantum + graphs), Flask APIs, web scraping, data analysis." },
+    { "id": "cpp",         "label": "C++",                     "type": "skill",      "group": 2, "description": "Multithreaded algorithms at Keysight, graph algorithm implementations." },
+    { "id": "d3",          "label": "D3.js",                   "type": "skill",      "group": 2, "description": "Real-time instrument charts at Keysight; career graph in this portfolio." },
+    { "id": "nodejs",      "label": "Node.js",                 "type": "skill",      "group": 2, "description": "Web scraping and headless browser automation at DPF Consulting." },
+
+    { "id": "aws",         "label": "AWS",                     "type": "skill",      "group": 3, "description": "Lambda, DynamoDB, SNS/SQS, CDK, ECS/Fargate, EventBridge, Batch, API GW." },
+    { "id": "qiskit",      "label": "Qiskit / Python QC",      "type": "skill",      "group": 3, "description": "Quantum circuit simulation, IBM Quantum hardware, hackathons." },
+    { "id": "mongodb",     "label": "MongoDB",                 "type": "skill",      "group": 3, "description": "NoSQL backend at DPF Consulting." },
+    { "id": "networkx",    "label": "NetworkX",                "type": "skill",      "group": 3, "description": "Graph algorithm prototyping in Python." },
+
+    { "id": "dei",         "label": "DEI — B.Tech EE+CS",      "type": "education",  "group": 4, "description": "B.Tech Electrical Engineering with CS specialisation, 2017–2021. Developed deep interest in quantum computing and graph theory." },
+    { "id": "bits",        "label": "BITS Pilani — M.Tech",    "type": "education",  "group": 4, "description": "M.Tech Artificial Intelligence & Machine Learning via WILP. Started Jan 2026, ongoing." },
+
+    { "id": "google",      "label": "Google — SDE3",           "type": "experience", "group": 5, "description": "Software Development Engineer III. Joined Aug 2025.", "url": "" },
+    { "id": "amazon",      "label": "Amazon — SDE1/2",         "type": "experience", "group": 5, "description": "3.5 years at Amazon Last Mile DSP-Tech. Built BGC platform, DSP Vault, and 3P integration platform." },
+    { "id": "keysight",    "label": "Keysight Technologies",   "type": "experience", "group": 5, "description": "R&D Software Developer. Built Pathwave DMM and Oscilloscope with D3.js + C++." },
+    { "id": "dpf",         "label": "DPF Consulting",          "type": "experience", "group": 5, "description": "Full Stack Developer (moonlighting, UK startup). Flask APIs, scraping, AWS EC2." },
+
+    { "id": "p-bgc",       "label": "BGC Transparency Platform","type": "project",   "group": 6, "description": "200K+ daily events, 0.6-day onboarding reduction, cluster-based ETA prediction." },
+    { "id": "p-dsp",       "label": "DSP Metadata Vault",      "type": "project",    "group": 6, "description": "Fault-tolerant vault mitigating $1B+ annual payment risk." },
+    { "id": "p-3p",        "label": "3P Vendor Integration",   "type": "project",    "group": 6, "description": "Config-driven orchestration, 50% onboarding effort reduction." },
+    { "id": "p-portfolio", "label": "Portfolio v3",            "type": "project",    "group": 6, "description": "This site — Angular 21, D3 force graph, Three.js, NLP toolbar.", "url": "/" },
+    { "id": "p-graphlet",  "label": "Graphlet Analysis",       "type": "project",    "group": 6, "description": "MITACS internship at UNBC — efficient graphlet enumeration algorithms." },
+    { "id": "p-pathwave",  "label": "Pathwave DMM/Scope",      "type": "project",    "group": 6, "description": "Real-time D3 signal visualisation for remote lab instruments at Keysight." },
+
+    { "id": "pub-qutrit",  "label": "Qutrit MSD Paper",        "type": "project",    "group": 7, "description": "arXiv:2408.00436 — high-threshold qutrit magic state distillation routines." },
+    { "id": "pub-graph",   "label": "Graph Coloring Paper",    "type": "project",    "group": 7, "description": "Springer AISC — novel heuristic for conflict-free two-colorability + patent." }
+  ],
+  "links": [
+    { "source": "me", "target": "qc",          "strength": 0.9 },
+    { "source": "me", "target": "graph-theory","strength": 0.9 },
+    { "source": "me", "target": "dist-sys",    "strength": 0.95 },
+    { "source": "me", "target": "ml",          "strength": 0.7 },
+    { "source": "me", "target": "java",        "strength": 0.9 },
+    { "source": "me", "target": "python",      "strength": 0.9 },
+    { "source": "me", "target": "angular",     "strength": 0.85 },
+    { "source": "me", "target": "typescript",  "strength": 0.85 },
+    { "source": "me", "target": "dei",         "strength": 0.8 },
+    { "source": "me", "target": "bits",        "strength": 0.7 },
+    { "source": "me", "target": "google",      "strength": 0.7 },
+    { "source": "me", "target": "amazon",      "strength": 0.85 },
+    { "source": "me", "target": "keysight",    "strength": 0.6 },
+    { "source": "me", "target": "dpf",         "strength": 0.55 },
+
+    { "source": "qc",          "target": "qiskit",    "strength": 0.85 },
+    { "source": "qc",          "target": "python",    "strength": 0.7  },
+    { "source": "qc",          "target": "dei",       "strength": 0.8  },
+    { "source": "qc",          "target": "pub-qutrit","strength": 0.95 },
+
+    { "source": "graph-theory","target": "networkx",  "strength": 0.8  },
+    { "source": "graph-theory","target": "python",    "strength": 0.7  },
+    { "source": "graph-theory","target": "cpp",       "strength": 0.6  },
+    { "source": "graph-theory","target": "dei",       "strength": 0.75 },
+    { "source": "graph-theory","target": "pub-graph", "strength": 0.95 },
+    { "source": "graph-theory","target": "p-graphlet","strength": 0.8  },
+
+    { "source": "dist-sys",    "target": "aws",       "strength": 0.95 },
+    { "source": "dist-sys",    "target": "java",      "strength": 0.85 },
+    { "source": "dist-sys",    "target": "amazon",    "strength": 0.95 },
+    { "source": "dist-sys",    "target": "p-bgc",     "strength": 0.9  },
+    { "source": "dist-sys",    "target": "p-dsp",     "strength": 0.9  },
+    { "source": "dist-sys",    "target": "p-3p",      "strength": 0.85 },
+
+    { "source": "ml",          "target": "bits",      "strength": 0.8  },
+    { "source": "ml",          "target": "python",    "strength": 0.7  },
+    { "source": "ml",          "target": "p-bgc",     "strength": 0.6  },
+
+    { "source": "angular",     "target": "typescript","strength": 0.9  },
+    { "source": "angular",     "target": "d3",        "strength": 0.75 },
+    { "source": "angular",     "target": "keysight",  "strength": 0.85 },
+    { "source": "angular",     "target": "dpf",       "strength": 0.7  },
+    { "source": "angular",     "target": "p-portfolio","strength": 0.9  },
+    { "source": "angular",     "target": "p-pathwave","strength": 0.85 },
+
+    { "source": "d3",          "target": "p-portfolio","strength": 0.85 },
+    { "source": "d3",          "target": "p-pathwave","strength": 0.9  },
+    { "source": "d3",          "target": "keysight",  "strength": 0.8  },
+
+    { "source": "cpp",         "target": "keysight",  "strength": 0.85 },
+    { "source": "cpp",         "target": "p-pathwave","strength": 0.8  },
+
+    { "source": "python",      "target": "dpf",       "strength": 0.7  },
+    { "source": "python",      "target": "mongodb",   "strength": 0.6  },
+    { "source": "nodejs",      "target": "dpf",       "strength": 0.8  },
+
+    { "source": "aws",         "target": "amazon",    "strength": 0.95 },
+    { "source": "aws",         "target": "dpf",       "strength": 0.6  },
+    { "source": "aws",         "target": "p-bgc",     "strength": 0.9  },
+    { "source": "aws",         "target": "p-dsp",     "strength": 0.9  },
+    { "source": "aws",         "target": "p-3p",      "strength": 0.85 },
+
+    { "source": "amazon",      "target": "p-bgc",     "strength": 0.9  },
+    { "source": "amazon",      "target": "p-dsp",     "strength": 0.9  },
+    { "source": "amazon",      "target": "p-3p",      "strength": 0.85 },
+
+    { "source": "dei",         "target": "pub-qutrit","strength": 0.8  },
+    { "source": "dei",         "target": "pub-graph", "strength": 0.8  },
+    { "source": "dei",         "target": "p-graphlet","strength": 0.6  },
+
+    { "source": "google",      "target": "dist-sys",  "strength": 0.8  },
+    { "source": "google",      "target": "java",      "strength": 0.7  },
+
+    { "source": "pub-qutrit",  "target": "qiskit",    "strength": 0.8  },
+    { "source": "pub-graph",   "target": "networkx",  "strength": 0.7  },
+    { "source": "pub-graph",   "target": "p-graphlet","strength": 0.5  },
+
+    { "source": "p-portfolio", "target": "d3",        "strength": 0.85 },
+    { "source": "p-graphlet",  "target": "networkx",  "strength": 0.85 }
+  ]
+}

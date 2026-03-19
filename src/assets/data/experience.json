@@ -1,0 +1,90 @@
+[
+  {
+    "id": "exp-google",
+    "role": "Software Development Engineer III",
+    "company": "Google",
+    "location": "India",
+    "start": "Aug 2025",
+    "end": "Present",
+    "type": "full-time",
+    "description": "SDE3 at Google, continuing to work at the intersection of large-scale distributed systems and engineering excellence.",
+    "bullets": [
+      "Working as SDE3 contributing to large-scale, high-impact engineering initiatives",
+      "Bringing experience from Amazon's event-driven, cloud-native architecture to Google's infrastructure",
+      "Deepening expertise in ML systems alongside ongoing MTech in AI/ML from BITS Pilani"
+    ],
+    "skills": ["Distributed Systems", "Large-Scale Engineering", "Go", "Java"]
+  },
+  {
+    "id": "exp-amazon-sde2",
+    "role": "Software Development Engineer II",
+    "company": "Amazon",
+    "location": "Hyderabad, India",
+    "start": "Dec 2023",
+    "end": "Jul 2025",
+    "type": "full-time",
+    "description": "Led high-impact engineering on the Last Mile DSP-Tech team, owning critical payment-risk and driver-onboarding platforms across the NA region.",
+    "bullets": [
+      "Designed and built a scalable, fault-tolerant historical data vault for DSP metadata, enabling audit-ready tracking of contract versions and station mappings — reducing manual finance work by 80+ hours/month and mitigating $1B+ annual payment risk",
+      "Developed real-time ingestion pipelines using AWS DynamoDB Streams, Lambda, SNS, and SQS to capture DSP metadata changes with temporal versioning, supporting complex query patterns and high data integrity",
+      "Led creation of the DSP Data Retrieval Service (DDRS) on ECS/Fargate with API Gateway, providing secure, low-latency synchronous and asynchronous APIs for bulk querying of DSP historical and current data",
+      "Led end-to-end design & implementation of background check transparency platform at Amazon Delivery, enabling real-time insights into background checks and reducing driver onboarding time by 0.6 days across NA region",
+      "Architected scalable, event-driven infrastructure using AWS Lambda, SNS/SQS, DynamoDB, and CDK; processed 200K+ daily third-party global vendor events with fault tolerance and low-latency data propagation",
+      "Built cluster-based ETA prediction engine using AWS Batch pipelines and historical BGC data; delivered actionable p50/p90 time ranges to drive 5% YoY improvement in DA background check turnaround"
+    ],
+    "skills": ["Java", "AWS Lambda", "DynamoDB", "SNS", "SQS", "ECS/Fargate", "AWS CDK", "EventBridge", "API Gateway"]
+  },
+  {
+    "id": "exp-amazon-sde1",
+    "role": "Software Development Engineer I",
+    "company": "Amazon",
+    "location": "Hyderabad, India",
+    "start": "Jan 2022",
+    "end": "Dec 2023",
+    "type": "full-time",
+    "description": "Owned the Third Party Vendor System Integration Platform for Amazon Delivery — unifying partner integrations across background checks, payroll, drug testing, and value-added services.",
+    "bullets": [
+      "Architected a scalable platform to unify 3P vendor integrations (e.g., BGC, drug test, payroll) via config-driven orchestration, reducing partner onboarding effort by 50%",
+      "Built a low-code service catalog enabling partners to manage value-added services (uniforms, training) through a centralized API layer",
+      "Designed provider-centric analytics to surface vendor performance, service utilization, and satisfaction insights — powering data-driven vendor decisions",
+      "Implemented modular vendor adapter framework for protocol abstraction (REST, webhooks, async events), streamlining multi-vendor support",
+      "Enabled secure automation of outbound interactions via certificate lifecycle management and real-time event handling (AWS EventBridge, Lambda)"
+    ],
+    "skills": ["Java", "AWS", "EventBridge", "Lambda", "DynamoDB", "REST APIs", "Microservices"]
+  },
+  {
+    "id": "exp-keysight",
+    "role": "R&D Software Developer",
+    "company": "Keysight Technologies",
+    "location": "Gurugram, India",
+    "start": "Jan 2021",
+    "end": "Jan 2022",
+    "type": "full-time",
+    "description": "Developed and released Pathwave Digital Multimeter and Pathwave Oscilloscope software — real-time signal digitization and visualization for remote lab instruments.",
+    "bullets": [
+      "Worked on digitization of signals received in real-time from remote DMM instruments and visualized them on UI using D3.js and Angular in various chart types with full interactivity",
+      "Developed multithreaded algorithms and integrated APIs in C++ and Angular to support SCPI commands, integrating remote instruments and software frontend",
+      "Developed algorithm for continuous trace logging spanned across various digital pages of oscilloscope scope",
+      "Released Pathwave DMM and Pathwave Oscilloscope modules as part of the Keysight Pathwave software suite"
+    ],
+    "skills": ["Angular", "TypeScript", "D3.js", "C++", "SCPI", "Multithreading", "Signal Processing"]
+  },
+  {
+    "id": "exp-dpf",
+    "role": "Full Stack Software Developer",
+    "company": "DPF Consulting",
+    "location": "London, UK (Remote)",
+    "start": "Jan 2021",
+    "end": "Jan 2022",
+    "type": "full-time",
+    "description": "Full-stack development for a UK-based consulting startup — built web scraping infrastructure, REST APIs, and deployed production services on AWS.",
+    "bullets": [
+      "Created REST APIs in Flask to fetch data from MongoDB and served behind Nginx",
+      "Built a module to scrape data from web pages using a headless browser in Python and Node.js (TypeScript)",
+      "Deployed modules on AWS EC2 and configured them; used PM2 to run services",
+      "Wrote unit, integration, and end-to-end system tests for all source code",
+      "Wrote technical documentation of source code and functional applications"
+    ],
+    "skills": ["Python", "Flask", "MongoDB", "Node.js", "TypeScript", "AWS EC2", "Nginx", "PM2"]
+  }
+]

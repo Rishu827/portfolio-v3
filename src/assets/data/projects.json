@@ -1,0 +1,86 @@
+[
+  {
+    "id": "p-bgc-platform",
+    "title": "Background Check Transparency Platform",
+    "tagline": "Real-time BGC insights cutting driver onboarding by 0.6 days",
+    "description": "Led end-to-end design and implementation of Amazon Delivery's background check transparency platform. Architected event-driven infrastructure processing 200K+ daily third-party global vendor events. Built a cluster-based ETA prediction engine using AWS Batch and historical BGC data, delivering p50/p90 time-range predictions that drove a 5% YoY improvement in DA background check turnaround across the NA region.",
+    "tags": ["Distributed Systems", "AWS", "Event-Driven", "ML"],
+    "stack": ["Java", "AWS Lambda", "DynamoDB", "SNS/SQS", "AWS CDK", "AWS Batch"],
+    "featured": true,
+    "year": 2024
+  },
+  {
+    "id": "p-dsp-vault",
+    "title": "DSP Metadata Vault & DDRS",
+    "tagline": "$1B+ annual payment risk mitigated via fault-tolerant data vault",
+    "description": "Designed and built a scalable, fault-tolerant historical data vault for Delivery Service Provider (DSP) metadata at Amazon. Enabled audit-ready tracking of contract versions and station mappings, reducing manual finance reconciliation by 80+ hours/month and mitigating $1B+ annual payment risk. Developed the DSP Data Retrieval Service (DDRS) on ECS/Fargate with API Gateway for low-latency bulk querying.",
+    "tags": ["Distributed Systems", "AWS", "Microservices", "Data Engineering"],
+    "stack": ["Java", "DynamoDB Streams", "Lambda", "SNS", "SQS", "ECS/Fargate", "API Gateway"],
+    "featured": true,
+    "year": 2024
+  },
+  {
+    "id": "p-3p-platform",
+    "title": "Third-Party Vendor Integration Platform",
+    "tagline": "50% reduction in partner onboarding effort via config-driven orchestration",
+    "description": "Architected a scalable platform at Amazon to unify 3P vendor integrations (BGC, drug test, payroll) via config-driven orchestration. Built a low-code service catalog for partners to manage value-added services through a centralized API layer. Implemented a modular vendor adapter framework for protocol abstraction across REST, webhooks, and async events.",
+    "tags": ["Microservices", "AWS", "API Design", "Platform Engineering"],
+    "stack": ["Java", "AWS Lambda", "EventBridge", "DynamoDB", "REST", "CDK"],
+    "featured": true,
+    "year": 2023
+  },
+  {
+    "id": "p-portfolio",
+    "title": "The Observer Effect — Portfolio v3",
+    "tagline": "Angular 21 · D3 force graph · Three.js icosahedron · NLP toolbar",
+    "description": "This portfolio — a zoneless Angular 21 application featuring a D3 v7 force-directed career graph, Three.js rotating icosahedron, quantum interference canvas background, and an NLP-powered agentic toolbar. Built with a custom glassmorphism design system, Tailwind v4 CSS-first tokens, and lazy-loaded 7-dimension routing.",
+    "tags": ["Angular", "D3.js", "Three.js", "TypeScript"],
+    "stack": ["Angular 21", "TypeScript", "D3.js v7", "Three.js", "Tailwind CSS v4"],
+    "github": "https://github.com/rishabhsinghal/portfolio",
+    "featured": true,
+    "year": 2025
+  },
+  {
+    "id": "p-qutrit-msd",
+    "title": "Qutrit Magic State Distillation Research",
+    "tagline": "Searching for high-threshold distillation routines for fault-tolerant qutrits",
+    "description": "Research into magic state distillation for qutrits using self-dual additive codes over GF(9). Developed the algebraic framework connecting classical coding theory to qutrit stabiliser codes, constructed candidate distillation circuits, and identified routines exceeding previously known distillation thresholds. Published as arXiv:2408.00436 and presented as a poster at QIP 2022.",
+    "tags": ["Quantum Computing", "Qutrits", "Research", "Fault-Tolerant QC"],
+    "stack": ["Python", "Qiskit", "SageMath", "NumPy"],
+    "arxiv": "https://arxiv.org/abs/2408.00436",
+    "featured": true,
+    "year": 2024
+  },
+  {
+    "id": "p-graph-coloring",
+    "title": "Conflict-Free Graph Coloring Heuristic",
+    "tagline": "NP-hard coloring approximation — published in Springer + granted patent",
+    "description": "Designed a novel heuristic for estimating two-colorability for conflict-free coloring in simple graphs. The method uses structural graph properties and greedy exploration to approximate an NP-hard decision problem. Published in Springer's Advances in Intelligent Systems and Computing (DOI: 10.1007/978-981-15-8025-3_33) and granted IP Australia patent 2021104261.",
+    "tags": ["Graph Theory", "Algorithms", "Research", "Combinatorics"],
+    "stack": ["Python", "NetworkX", "C++"],
+    "doi": "https://doi.org/10.1007/978-981-15-8025-3_33",
+    "patent": "https://ipsearch.ipaustralia.gov.au/patents/2021104261",
+    "featured": false,
+    "year": 2020
+  },
+  {
+    "id": "p-pathwave",
+    "title": "Pathwave DMM & Oscilloscope",
+    "tagline": "Real-time signal digitisation and visualisation for remote lab instruments",
+    "description": "Developed and released Pathwave Digital Multimeter and Pathwave Oscilloscope as part of Keysight's Pathwave software suite. Digitised signals from remote DMM instruments in real time and visualised them using D3.js and Angular with interactive charts. Implemented multithreaded C++ algorithms for SCPI command integration and continuous trace logging across oscilloscope digital pages.",
+    "tags": ["Angular", "D3.js", "C++", "Signal Processing"],
+    "stack": ["Angular", "TypeScript", "D3.js", "C++", "SCPI"],
+    "featured": false,
+    "year": 2021
+  },
+  {
+    "id": "p-graphlet",
+    "title": "Big Data Analysis using Graphlets",
+    "tagline": "Efficient algorithms for graphlet and orbit enumeration on large networks",
+    "description": "Research internship at the University of Northern British Columbia (MITACS Globalink) under Prof. Alex Aravind. Studied complex systems using graphlet analysis, designed and analysed efficient algorithms for graphlet and orbit enumeration, and applied them to real-world network datasets. The work involves constructing network graphs from raw data and computing graphlet metrics to extract structural insights.",
+    "tags": ["Graph Theory", "Network Analysis", "Algorithms", "Research"],
+    "stack": ["Python", "NetworkX", "C++"],
+    "featured": false,
+    "year": 2020
+  }
+]
