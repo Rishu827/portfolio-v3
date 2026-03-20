@@ -13,7 +13,7 @@
     "id": "p-dsp-vault",
     "title": "DSP Metadata Vault & DDRS",
     "tagline": "$1B+ annual payment risk mitigated via fault-tolerant data vault",
-    "description": "Designed and built a scalable, fault-tolerant historical data vault for Delivery Service Provider (DSP) metadata at Amazon. Enabled audit-ready tracking of contract versions and station mappings, reducing manual finance reconciliation by 80+ hours/month and mitigating $1B+ annual payment risk. Developed the DSP Data Retrieval Service (DDRS) on ECS/Fargate with API Gateway for low-latency bulk querying.",
+    "description": "Designed and built a scalable, fault-tolerant historical data vault for Delivery Service Partner (DSP) metadata at Amazon. Enabled audit-ready tracking of contract versions and station mappings, reducing manual finance reconciliation by 80+ hours/month and mitigating $1B+ annual payment risk. Developed the DSP Data Retrieval Service (DDRS) on ECS/Fargate with API Gateway for low-latency bulk querying.",
     "tags": ["Distributed Systems", "AWS", "Microservices", "Data Engineering"],
     "stack": ["Java", "DynamoDB Streams", "Lambda", "SNS", "SQS", "ECS/Fargate", "API Gateway"],
     "featured": true,
@@ -50,6 +50,82 @@
     "arxiv": "https://arxiv.org/abs/2408.00436",
     "featured": true,
     "year": 2024
+  },
+  {
+    "id": "p-qusudoku",
+    "title": "QuSudoku — Quantum Sudoku Solver",
+    "tagline": "iQuHACK 2021 — D-Wave hybrid quantum annealing solves N×N Sudoku as graph coloring",
+    "description": "Built at MIT's iQuHACK 2021 hackathon (Team Sycamore — Rishabh Singhal, Niranjan P N, Rohit K S S Vuppala). The core insight: N×N Sudoku is NP-complete and maps directly to graph coloring. `graphModelling()` builds a NetworkX graph where each cell is a node and edges encode the three Sudoku constraint classes (same row, same column, same sub-square). `buildDQM()` constructs a `DiscreteQuadraticModel` with one variable per cell (cases = N colors), sets linear biases across all colors, and adds quadratic QUBO penalties (lagrange=1000) for every edge to penalise same-color adjacent cells. Pre-filled cells are fixed by zeroing out conflicting quadratic terms. `solveSudoku()` submits the model to D-Wave's `LeapHybridDQMSampler`, reads the lowest-energy sample, and validates the solution by checking every graph edge for color conflicts. Generalises to any graph coloring problem including wireless frequency assignment.",
+    "tags": ["Quantum Computing", "Hackathon", "Quantum Annealing", "Graph Coloring"],
+    "stack": ["Python", "D-Wave Ocean SDK", "dimod DQM", "NetworkX", "LeapHybridDQMSampler"],
+    "github": "https://github.com/iQuHACK/2021_sycamore",
+    "featured": false,
+    "year": 2021
+  },
+  {
+    "id": "p-mock-interview",
+    "title": "Mock Interview Scheduler",
+    "tagline": "Full-stack platform — auto-schedules peer mock interviews by availability and skillset",
+    "description": "Community platform (package `com.example.MockProject`) enabling engineers and students to conduct or appear for mock technical interviews. A Spring MVC REST backend exposes endpoints for user registration, availability slot management, and skill-tag declaration. A scheduling engine matches interviewers and interviewees whose available windows overlap and whose skill tags intersect, eliminating manual coordination over chat or email. A React frontend handles the booking flow, upcoming interview dashboard, and interview feedback forms. Built during June–August 2020 to help job-seekers practice under realistic interview conditions with structured feedback.",
+    "tags": ["Full-Stack", "Java", "React", "Web Development"],
+    "stack": ["Spring Boot", "Spring MVC", "Java", "React", "HTML", "CSS", "Maven"],
+    "github": "https://github.com/Rishu827/Mock-Interview-Scheduler",
+    "featured": false,
+    "year": 2020
+  },
+  {
+    "id": "p-covid-reliever",
+    "title": "Covid Reliever",
+    "tagline": "HACKON 2020 — gamified essentials ordering + mental wellness for lockdown",
+    "description": "Hackathon project (HACKON 2020) combining essential-goods logistics with mental health support during COVID-19 lockdowns. The Python/Flask backend connects users to nearby grocery stores, chemists, and vegetable vendors; prescription images can be uploaded for medicine orders with home delivery. Alongside the e-commerce surface, a PyGame-powered mini-game asks players to eliminate virus particles while protecting virtual family members — top scorers receive discount vouchers and priority order slots, creating a retention loop that also addresses isolation-driven anxiety. MongoDB stores user profiles, store inventories, order history, and game leaderboards. HTML/CSS templates render the storefront and game wrapper in-browser.",
+    "tags": ["Hackathon", "Python", "PyGame", "Community"],
+    "stack": ["Python", "PyGame", "MongoDB", "HTML", "CSS"],
+    "github": "https://github.com/Rishu827/Covid-Relievers",
+    "featured": false,
+    "year": 2020
+  },
+  {
+    "id": "p-voice-assistant",
+    "title": "Voice Controlled Assistant",
+    "tagline": "Speech-driven Raspberry Pi assistant — emails, notes, and GPIO control by voice",
+    "description": "Embedded voice-interface system running on a Raspberry Pi that converts continuous speech input into structured control signals and actions. The pipeline captures audio via a connected microphone, applies keyword-spotting and intent classification using Python speech-recognition libraries, and dispatches corresponding actions: composing and sending voice-generated emails via SMTP, appending timestamped notes to local storage, and driving GPIO-connected peripherals. The system operates offline for local commands and escalates to cloud APIs for open-ended queries, making it robust in low-connectivity IoT environments. Designed as a hands-free control layer for lab equipment and home automation experiments.",
+    "tags": ["IoT", "Python", "Raspberry Pi", "Speech Recognition"],
+    "stack": ["Python", "Raspberry Pi", "SpeechRecognition", "gTTS", "GPIO", "SMTP"],
+    "featured": false,
+    "year": 2019
+  },
+  {
+    "id": "p-mobile-powerhouse",
+    "title": "Multipurpose Mobile Powerhouse",
+    "tagline": "Solar-powered 160W mobile generator with Bluetooth-commanded Arduino chassis",
+    "description": "Team hardware project at DEI, Agra (Rishabh Singhal, Harsh Saxena, Umangdeep). A 1m×1m×1.2m aluminium-fabricated vehicle carrying monocrystalline solar panels that generate up to 160W; a relay bank routes output either to a battery pack or direct load. The Arduino Mega firmware listens on the HC-05 Bluetooth serial interface for single-character commands: F/R for forward/reverse motor drive, C/A for clockwise/anticlockwise steering via DPDT relays, T/D/B/E for panel positioning (top, down, back, stop), H for horn, and Q to halt all motion. DPDT and SPDT relay combinations implement directional motor control without an H-bridge IC; a PWM channel governs BLDC speed. State variables track current panel angle to prevent over-travel. The system demonstrates that a compact mobile platform can both generate and consume its own electrical energy.",
+    "tags": ["Embedded Systems", "Arduino", "IoT", "Hardware", "Solar"],
+    "stack": ["C++", "Arduino Mega", "HC-05 Bluetooth", "DPDT/SPDT Relays", "PWM"],
+    "github": "https://github.com/Rishu827/Multi-purpose-Powerhouse",
+    "featured": false,
+    "year": 2018
+  },
+  {
+    "id": "p-library-mgmt",
+    "title": "Library Management Software",
+    "tagline": "PyQt5 desktop app — book catalogue with price lookup and quantity billing",
+    "description": "Desktop application for managing a library's book inventory, built with PyQt5 and an SQLite backend (`LibraryDatabase.db`). The `GUI.py` module defines a `Ui_Form` PyQt5 widget with three functional methods: `setupUi()` assembles the layout from the Qt Designer `.ui` file, `findprice()` issues a `SELECT * FROM books WHERE title=?` parameterised query to retrieve book metadata and populate the price field, and `findtotal()` computes total = price × quantity and displays the result. `Data Insertion.py` and `Data Retrieval.py` provide standalone scripts for bulk-loading and dumping catalogue records. The entire application ships as a self-contained Python package with no external server dependency — the SQLite file travels with the codebase.",
+    "tags": ["Python", "Desktop", "SQLite", "GUI"],
+    "stack": ["Python", "PyQt5", "SQLite"],
+    "github": "https://github.com/Rishu827/Basic-Library-Management-Software",
+    "featured": false,
+    "year": 2018
+  },
+  {
+    "id": "p-smart-highway",
+    "title": "Smart Highway — Adaptive Street Lighting",
+    "tagline": "4 IR sensors drive a cascading 6-LED window that tracks vehicles to conserve energy",
+    "description": "Arduino C++ firmware that eliminates the energy waste of uniformly lit, empty roads at night. Four IR proximity sensors (pins 2–5) are placed at fixed intervals; six LED banks (pins 6–11) span the monitored stretch. Each sensor triggers a three-LED window: `prox1` illuminates LED1–LED3, `prox2` illuminates LED2–LED4, `prox3` illuminates LED3–LED5, and `prox4` illuminates LED4–LED6, plus a green indicator. Because consecutive sensor zones share two LEDs, a vehicle travelling through activates a rolling three-lamp spotlight that follows it through the `digitalRead` polling loop. Only the occupied segment and its immediate neighbours are lit at any time; all other banks remain off. The design scales by chaining identical sensor-relay modules along the roadway — no software changes needed for longer deployments.",
+    "tags": ["Embedded Systems", "IoT", "Arduino", "Hardware", "Energy"],
+    "stack": ["C++", "Arduino Uno", "IR Sensor", "LED Relay Module"],
+    "github": "https://github.com/Rishu827/Smart-Street-Light-System",
+    "featured": false,
+    "year": 2018
   },
   {
     "id": "p-graph-coloring",

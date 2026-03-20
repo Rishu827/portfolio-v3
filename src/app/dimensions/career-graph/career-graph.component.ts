@@ -54,7 +54,8 @@ function nodeR(d: SimNode): number {
       <header class="page-header" appReveal>
         <span class="dim-badge q-tag q-tag-cyan">DIMENSION 1</span>
         <h1 class="page-title">Career</h1>
-        <p class="page-sub">Professional experience and an interactive force-directed map of skills, projects, and publications.</p>
+        <p class="worldline-label">WORLDLINE TRAJECTORY</p>
+        <p class="page-sub">A worldline through phase space — from classical systems to quantum architectures.</p>
       </header>
 
       <!-- Tab bar -->
@@ -75,6 +76,11 @@ function nodeR(d: SimNode): number {
           </div>
         }
       </div>
+
+      <!-- Graph hint label -->
+      @if (tab() === 'graph') {
+        <div class="graph-hint">ENTANGLEMENT MAP — drag to explore, double-click to release</div>
+      }
 
       <!-- ── GRAPH VIEW ── -->
       @if (tab() === 'graph') {
@@ -112,11 +118,16 @@ function nodeR(d: SimNode): number {
         <div class="timeline-section">
           <canvas #neuralCanvas class="neural-canvas" aria-hidden="true"></canvas>
           <div class="timeline-wrap">
-            <div class="timeline-line"></div>
+            <div class="timeline-bg" aria-hidden="true"></div>
+            <div class="timeline-line tl-line-gradient"></div>
             @for (exp of experiences(); track exp.id; let i = $index) {
+              @if (i > 0) {
+                <div class="quantum-jump">▲ QUANTUM JUMP · E<sub>{{ experiences().length - i }}</sub> → E<sub>{{ experiences().length - i + 1 }}</sub></div>
+              }
               <div class="tl-item" appReveal [delay]="i * 65" [class.right]="i % 2 === 1">
                 <div class="tl-dot"></div>
-                <div class="exp-card glass glass-hover">
+                <div class="exp-card glass glass-hover" [class]="'exp-card-type-' + exp.type">
+                  <div class="e-level">E<sub>{{ experiences().length - i }}</sub> · ENERGY LEVEL {{ experiences().length - i }}</div>
                   <div class="exp-meta">
                     <span class="exp-type q-tag" [class]="typeClass(exp.type)">{{ exp.type }}</span>
                     <span class="exp-dates">{{ exp.start }} — {{ exp.end }}</span>
@@ -149,9 +160,11 @@ function nodeR(d: SimNode): number {
       max-width: 1000px; margin: 0 auto;
       padding: 60px 24px 20px;
       display: flex; flex-direction: column; gap: 10px;
+      position: relative; z-index: 1;
     }
     .dim-badge { font-size: 10px !important; letter-spacing: 0.15em; align-self: flex-start; }
     .page-title { font-size: clamp(30px, 5vw, 48px); font-weight: 700; color: rgba(255,255,255,0.92); }
+    .worldline-label { font-size: 10px; font-family: var(--font-mono); color: rgba(0,242,255,0.3); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px; }
     .page-sub   { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; }
 
     /* ── Tab bar ──────────────────────────────────────── */
@@ -222,12 +235,15 @@ function nodeR(d: SimNode): number {
     .panel-tags  { display: flex; flex-wrap: wrap; gap: 5px; }
     .panel-link  { font-size: 12px; color: #00F2FF; text-decoration: none; }
 
+    /* ── Graph hint ───────────────────────────────────── */
+    .graph-hint { text-align: center; font-size: 10px; font-family: var(--font-mono); color: rgba(255,255,255,0.2); letter-spacing: 0.12em; padding: 6px 0; }
+
     /* ── Timeline section ─────────────────────────────── */
     .timeline-section { position: relative; padding-bottom: 80px; }
     .neural-canvas {
       position: fixed; inset: 0; z-index: 0;
       width: 100%; height: 100%;
-      pointer-events: none; opacity: 0.1;
+      pointer-events: none; opacity: 0.85;
     }
     .timeline-wrap {
       max-width: 900px; margin: 32px auto 0;
@@ -235,11 +251,17 @@ function nodeR(d: SimNode): number {
       position: relative; z-index: 1;
       display: flex; flex-direction: column; gap: 28px;
     }
+    .timeline-bg { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(0,242,255,0.03) 80px); pointer-events: none; }
     .timeline-line {
       position: absolute; left: 50%; top: 0; bottom: 0;
       width: 1px; background: rgba(0,242,255,0.12);
       transform: translateX(-50%);
     }
+    .tl-line-gradient { background: linear-gradient(to bottom, #00F2FF, rgba(0,242,255,0.1)) !important; }
+
+    .quantum-jump { display: flex; align-items: center; justify-content: center; width: 100%; padding: 4px 0; color: rgba(0,242,255,0.2); font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.1em; }
+    .e-level { font-size: 9px; font-family: var(--font-mono); color: rgba(0,242,255,0.35); margin-bottom: 4px; }
+
     .tl-item {
       position: relative;
       width: calc(50% - 24px);
@@ -255,6 +277,9 @@ function nodeR(d: SimNode): number {
     .tl-item.right .tl-dot       { left:  -28px; }
 
     .exp-card { padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .exp-card-type-full-time { border-left: 2px solid rgba(0,242,255,0.4); }
+    .exp-card-type-internship { border-left: 2px solid rgba(192,132,252,0.4); }
+    .exp-card-type-research { border-left: 2px solid rgba(251,191,36,0.4); }
     .exp-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .exp-dates { font-size: 11px; color: rgba(255,255,255,0.5); font-family: var(--font-mono); }
     .exp-role    { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.95); }
@@ -293,8 +318,15 @@ export class CareerGraphComponent implements AfterViewInit, OnDestroy {
   private allNodes: SimNode[] = [];
   private resizeObs?: ResizeObserver;
   private neuralRaf = 0;
-  private neuralNodes: { x: number; y: number; vx: number; vy: number }[] = [];
   private graphData?: CareerGraph;
+
+  private atomActiveLevel = 0;
+  private atomJumpFrom = -1;
+  private atomJumpTo = -1;
+  private atomJumpProgress = 0;
+  private atomElectrons: { angle: number; speed: number; trail: {x:number;y:number}[] }[] = [];
+  private atomDeltaE: { text: string; alpha: number; vx: number; vy: number; x: number; y: number } | null = null;
+  private atomScrollHandler?: () => void;
 
   ngAfterViewInit(): void {
     this.http.get<Experience[]>('/assets/data/experience.json').subscribe(d => {
@@ -304,13 +336,14 @@ export class CareerGraphComponent implements AfterViewInit, OnDestroy {
       this.graphData = data;
     });
     // Default tab is timeline — init canvas after view renders
-    setTimeout(() => this.zone.runOutsideAngular(() => this.initNeuralCanvas()), 50);
+    setTimeout(() => this.zone.runOutsideAngular(() => this.initAtomCanvas()), 50);
   }
 
   ngOnDestroy(): void {
     this.simulation?.stop();
     this.resizeObs?.disconnect();
     cancelAnimationFrame(this.neuralRaf);
+    if (this.atomScrollHandler) window.removeEventListener('scroll', this.atomScrollHandler);
   }
 
   switchTab(t: ViewTab): void {
@@ -326,7 +359,7 @@ export class CareerGraphComponent implements AfterViewInit, OnDestroy {
       }, 50);
     }
     if (t === 'timeline') {
-      setTimeout(() => this.zone.runOutsideAngular(() => this.initNeuralCanvas()), 50);
+      setTimeout(() => this.zone.runOutsideAngular(() => this.initAtomCanvas()), 50);
     }
   }
 
@@ -451,8 +484,6 @@ export class CareerGraphComponent implements AfterViewInit, OnDestroy {
         .on('drag', (e, d) => { d.fx = e.x; d.fy = e.y; })
         .on('end',  (e, _d) => {
           if (!e.active) this.simulation.alphaTarget(0);
-          // Node stays pinned at drop position; rest of graph re-adjusts
-          // Double-click the node to release it
         }))
       .on('click', (_, d) => this.zone.run(() => this.selected.set(d)))
       .on('dblclick', (e, d) => {
@@ -599,48 +630,196 @@ export class CareerGraphComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  private initNeuralCanvas(): void {
+  private initAtomCanvas(): void {
     const canvas = this.canvasRef?.nativeElement;
     if (!canvas) return;
-    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-    resize();
-    window.addEventListener('resize', resize);
-    if (!this.neuralNodes.length) {
-      for (let i = 0; i < 40; i++) this.neuralNodes.push({
-        x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
-      });
+    cancelAnimationFrame(this.neuralRaf);
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    const expCount = this.experiences().length;
+    if (expCount === 0) return;
+
+    // Initialize electrons — one per experience level
+    this.atomElectrons = Array.from({ length: expCount }, (_, i) => ({
+      angle: (i / expCount) * Math.PI * 2,
+      speed: 0.006 - i * 0.0005,
+      trail: []
+    }));
+
+    // Scroll-based level detection
+    if (this.atomScrollHandler) {
+      window.removeEventListener('scroll', this.atomScrollHandler);
     }
+
+    const updateLevel = () => {
+      const items = document.querySelectorAll('.tl-item');
+      if (!items.length) return;
+      const viewMid = window.innerHeight * 0.45;
+      let closest = this.atomActiveLevel;
+      let minDist = Infinity;
+      items.forEach((el, i) => {
+        const rect = el.getBoundingClientRect();
+        const dist = Math.abs(rect.top + rect.height / 2 - viewMid);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      if (closest !== this.atomActiveLevel && closest < expCount) {
+        this.atomJumpFrom = this.atomActiveLevel;
+        this.atomJumpTo = closest;
+        this.atomJumpProgress = 0;
+        const fromN = expCount - this.atomJumpFrom;
+        const toN = expCount - closest;
+        const dE = Math.abs(13.6 * (1/(toN*toN) - 1/(fromN*fromN))).toFixed(2);
+        const cx = canvas.width * 0.5;
+        const cy = canvas.height * 0.5;
+        const baseR = Math.min(canvas.width, canvas.height) * 0.08;
+        const fromR = baseR * (fromN * fromN);
+        this.atomDeltaE = {
+          text: `ΔE = ${dE} eV`,
+          alpha: 1,
+          x: cx + fromR * 0.4,
+          y: cy - 20,
+          vx: 0.5 + Math.random() * 0.5,
+          vy: -0.8 - Math.random() * 0.5
+        };
+        this.atomActiveLevel = closest;
+      }
+    };
+
+    this.atomScrollHandler = updateLevel;
+    window.addEventListener('scroll', this.atomScrollHandler, { passive: true });
+
     const ctx = canvas.getContext('2d')!;
+
     const draw = () => {
       const W = canvas.width, H = canvas.height;
       ctx.clearRect(0, 0, W, H);
-      for (const n of this.neuralNodes) {
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0 || n.x > W) n.vx *= -1;
-        if (n.y < 0 || n.y > H) n.vy *= -1;
+
+      const cx = W * 0.5, cy = H * 0.5;
+      const baseR = Math.min(W, H) * 0.07;
+
+      // Draw each energy level orbit
+      for (let i = 0; i < expCount; i++) {
+        const n = expCount - i;
+        const r = Math.min(baseR * n * n * 0.3, Math.min(W, H) * 0.48);
+        const isActive = i === this.atomActiveLevel;
+
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, r, r * 0.38, -0.2, 0, Math.PI * 2);
+        ctx.strokeStyle = isActive ? '#00F2FF' : `rgba(255,255,255,${0.04 + n * 0.015})`;
+        ctx.lineWidth = isActive ? 1.2 : 0.4;
+        ctx.globalAlpha = isActive ? 0.7 : Math.max(0.15, 0.5 - i * 0.06);
+        ctx.stroke();
+
+        ctx.globalAlpha = isActive ? 0.65 : 0.18;
+        ctx.fillStyle = isActive ? '#00F2FF' : 'rgba(255,255,255,0.6)';
+        ctx.font = `${isActive ? 11 : 9}px monospace`;
+        ctx.textAlign = 'left';
+        ctx.fillText(`E${n}`, cx + r + 6, cy + 4);
       }
-      for (let i = 0; i < this.neuralNodes.length; i++) {
-        for (let j = i + 1; j < this.neuralNodes.length; j++) {
-          const dx = this.neuralNodes[i].x - this.neuralNodes[j].x;
-          const dy = this.neuralNodes[i].y - this.neuralNodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 130) {
-            ctx.globalAlpha = (1 - dist / 130) * 0.3;
-            ctx.strokeStyle = 'rgba(0,242,255,0.8)';
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(this.neuralNodes[i].x, this.neuralNodes[i].y);
-            ctx.lineTo(this.neuralNodes[j].x, this.neuralNodes[j].y);
-            ctx.stroke();
-          }
+
+      // Draw nucleus
+      ctx.globalAlpha = 1;
+      const nucGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 22);
+      nucGrad.addColorStop(0, 'rgba(0,242,255,1)');
+      nucGrad.addColorStop(0.3, 'rgba(0,242,255,0.4)');
+      nucGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = nucGrad;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 22, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+      ctx.fillStyle = '#fff';
+      ctx.globalAlpha = 0.95;
+      ctx.fill();
+
+      // Update and draw electrons
+      for (let i = 0; i < expCount; i++) {
+        const n = expCount - i;
+        const r = Math.min(baseR * n * n * 0.3, Math.min(W, H) * 0.48);
+        const e = this.atomElectrons[i];
+        const isActive = i === this.atomActiveLevel;
+
+        e.angle += e.speed * (isActive ? 2.5 : 1);
+
+        const ex = cx + r * Math.cos(e.angle);
+        const ey = cy + r * 0.38 * Math.sin(e.angle);
+
+        e.trail.push({ x: ex, y: ey });
+        if (e.trail.length > (isActive ? 18 : 8)) e.trail.shift();
+
+        for (let t = 0; t < e.trail.length; t++) {
+          const tp = t / e.trail.length;
+          ctx.beginPath();
+          ctx.arc(e.trail[t].x, e.trail[t].y, isActive ? 2 : 1, 0, Math.PI * 2);
+          ctx.fillStyle = isActive ? `rgba(0,242,255,${tp * 0.5})` : `rgba(100,200,255,${tp * 0.2})`;
+          ctx.globalAlpha = 1;
+          ctx.fill();
+        }
+
+        const eGrad = ctx.createRadialGradient(ex, ey, 0, ex, ey, isActive ? 10 : 5);
+        eGrad.addColorStop(0, isActive ? '#ffffff' : 'rgba(0,242,255,0.9)');
+        eGrad.addColorStop(1, 'transparent');
+        ctx.fillStyle = eGrad;
+        ctx.globalAlpha = isActive ? 1 : 0.5;
+        ctx.beginPath();
+        ctx.arc(ex, ey, isActive ? 10 : 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(ex, ey, isActive ? 3 : 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#fff';
+        ctx.globalAlpha = 0.95;
+        ctx.fill();
+      }
+
+      // Draw quantum jump arc
+      if (this.atomJumpFrom >= 0 && this.atomJumpTo >= 0 && this.atomJumpProgress < 1) {
+        this.atomJumpProgress += 0.025;
+        const fromN = expCount - this.atomJumpFrom;
+        const toN = expCount - this.atomJumpTo;
+        const fromR = Math.min(baseR * fromN * fromN * 0.3, Math.min(W, H) * 0.48);
+        const toR = Math.min(baseR * toN * toN * 0.3, Math.min(W, H) * 0.48);
+        const midR = (fromR + toR) / 2;
+        const isEmission = toN < fromN;
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, midR, -Math.PI * 0.4, Math.PI * 0.4);
+        ctx.strokeStyle = isEmission ? '#fbbf24' : '#a78bfa';
+        ctx.lineWidth = 2;
+        ctx.globalAlpha = (1 - this.atomJumpProgress) * 0.8;
+        ctx.setLineDash([4, 4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        if (this.atomJumpProgress >= 1) {
+          this.atomJumpFrom = -1;
+          this.atomJumpTo = -1;
         }
       }
-      ctx.globalAlpha = 1;
-      for (const n of this.neuralNodes) {
-        ctx.beginPath(); ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0,242,255,0.5)'; ctx.fill();
+
+      // Draw ΔE label
+      if (this.atomDeltaE) {
+        this.atomDeltaE.alpha -= 0.012;
+        this.atomDeltaE.x += this.atomDeltaE.vx;
+        this.atomDeltaE.y += this.atomDeltaE.vy;
+        if (this.atomDeltaE.alpha <= 0) {
+          this.atomDeltaE = null;
+        } else {
+          ctx.font = 'bold 12px monospace';
+          ctx.fillStyle = '#fbbf24';
+          ctx.globalAlpha = this.atomDeltaE.alpha;
+          ctx.textAlign = 'left';
+          ctx.fillText(this.atomDeltaE.text, this.atomDeltaE.x, this.atomDeltaE.y);
+        }
       }
+
+      ctx.globalAlpha = 1;
       this.neuralRaf = requestAnimationFrame(draw);
     };
     draw();

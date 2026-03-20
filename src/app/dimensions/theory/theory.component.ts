@@ -1,7 +1,9 @@
 import {
-  Component, ChangeDetectionStrategy, signal
+  Component, ChangeDetectionStrategy, signal, ViewChild, ElementRef,
+  AfterViewInit, OnDestroy, NgZone, inject
 } from '@angular/core';
 import { RevealDirective } from '../../core/directives/reveal.directive';
+import { KatexPipe } from '../../core/pipes/katex.pipe';
 
 interface TheoryCard {
   id: string;
@@ -91,15 +93,17 @@ const THEORY_CARDS: TheoryCard[] = [
 @Component({
   selector: 'app-theory',
   standalone: true,
-  imports: [RevealDirective],
+  imports: [RevealDirective, KatexPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="page dimension-view">
+      <canvas #hilbertCanvas class="hilbert-canvas" aria-hidden="true"></canvas>
+
       <header class="page-header" appReveal>
         <span class="dim-badge q-tag q-tag-purple">DIMENSION 5</span>
         <h1 class="page-title">Theoretical Computing</h1>
         <p class="page-sub">
-          Mathematical foundations of quantum algorithms, machine learning, and complexity theory.
+          Hilbert space — mathematical foundations of quantum algorithms, machine learning, and complexity theory.
         </p>
       </header>
 
@@ -110,6 +114,7 @@ const THEORY_CARDS: TheoryCard[] = [
             <div class="card-header">
               <span class="card-icon">{{ card.icon }}</span>
               <div class="card-info">
+                <span class="theorem-label">{{ i % 2 === 0 ? 'THEOREM' : 'RESULT' }}</span>
                 <h3 class="card-title">{{ card.title }}</h3>
                 <p class="card-subtitle">{{ card.subtitle }}</p>
               </div>
@@ -119,9 +124,7 @@ const THEORY_CARDS: TheoryCard[] = [
               <p class="card-text">{{ card.body }}</p>
               <div class="equations">
                 @for (eq of card.equations; track eq) {
-                  <div class="eq-block">
-                    <code class="eq-code">{{ eq }}</code>
-                  </div>
+                  <div class="eq-block" [innerHTML]="eq | katex:true"></div>
                 }
               </div>
               <div class="card-tags">
@@ -133,7 +136,7 @@ const THEORY_CARDS: TheoryCard[] = [
 
             <div class="card-footer">
               <span class="expand-hint">
-                {{ expanded() === card.id ? 'Collapse ↑' : 'Expand ↓' }}
+                {{ expanded() === card.id ? '[ COLLAPSE ]' : '[ EXPAND ]' }}
               </span>
             </div>
           </div>
@@ -142,12 +145,15 @@ const THEORY_CARDS: TheoryCard[] = [
     </div>
   `,
   styles: [`
-    .page { background: var(--color-obsidian); padding-bottom: 80px; }
+    .page { background: var(--color-obsidian); padding-bottom: 80px; position: relative; }
+
+    .hilbert-canvas { position: fixed; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
 
     .page-header {
       max-width: 1100px; margin: 0 auto;
       padding: 60px 24px 32px;
       display: flex; flex-direction: column; gap: 12px;
+      position: relative; z-index: 1;
     }
     .dim-badge { font-size: 10px !important; letter-spacing: 0.15em; align-self: flex-start; }
     .page-title { font-size: clamp(32px, 5vw, 52px); font-weight: 700; color: rgba(255,255,255,0.92); }
@@ -159,58 +165,136 @@ const THEORY_CARDS: TheoryCard[] = [
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 20px;
+      position: relative; z-index: 1;
     }
 
     .theory-card {
       padding: 24px;
       display: flex; flex-direction: column; gap: 16px;
       cursor: pointer;
+      border-left: 2px solid rgba(168,85,247,0.15);
       transition: border-color 0.3s, box-shadow 0.3s;
     }
+    .theory-card:hover { border-left-color: rgba(168,85,247,0.5); }
 
     .card-header { display: flex; gap: 14px; align-items: flex-start; }
-    .card-icon { font-size: 28px; color: #7000FF; flex-shrink: 0; margin-top: 2px; }
+    .card-icon { font-size: 28px; color: #a855f7; flex-shrink: 0; margin-top: 2px; }
     .card-info { display: flex; flex-direction: column; gap: 4px; }
+    .theorem-label { font-size: 9px; font-family: var(--font-mono); color: rgba(168,85,247,0.5); letter-spacing: 0.2em; text-transform: uppercase; }
     .card-title { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.9); }
     .card-subtitle { font-size: 12px; color: rgba(255,255,255,0.62); }
 
     .card-body {
-      display: none; flex-direction: column; gap: 14px;
+      display: flex; flex-direction: column; gap: 14px;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.23,1,0.32,1);
     }
-    .card-body.expanded { display: flex; }
+    .card-body.expanded { max-height: 600px; }
     .card-text { font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.7; }
 
-    .equations { display: flex; flex-direction: column; gap: 8px; }
+    .equations { display: flex; flex-direction: column; gap: 10px; }
     .eq-block {
       background: rgba(112,0,255,0.06);
-      border: 1px solid rgba(112,0,255,0.15);
+      border: 1px solid rgba(112,0,255,0.18);
       border-radius: 8px;
-      padding: 10px 14px;
+      padding: 14px 20px;
       overflow-x: auto;
+      text-align: center;
     }
-    .eq-code {
-      font-family: var(--font-mono); font-size: 12px;
-      color: rgba(168,85,247,0.85);
-      white-space: nowrap;
-    }
+    /* KaTeX output theming */
+    .eq-block .katex { color: rgba(216,180,254,0.95); font-size: 1.1em; }
+    .eq-block .katex-display { margin: 0; }
+    .eq-block .katex-display > .katex { color: rgba(216,180,254,0.95); }
 
     .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .card-footer { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px; }
     .expand-hint {
-      font-size: 11px; color: rgba(255,255,255,0.5);
+      font-size: 11px; color: rgba(168,85,247,0.6);
       font-family: var(--font-mono);
     }
+
+    .page-header, .cards-grid { position: relative; z-index: 1; }
 
     @media (max-width: 600px) {
       .cards-grid { grid-template-columns: 1fr; }
     }
   `]
 })
-export class TheoryComponent {
+export class TheoryComponent implements AfterViewInit, OnDestroy {
+  @ViewChild('hilbertCanvas') hilbertCanvasRef!: ElementRef<HTMLCanvasElement>;
+
+  private zone = inject(NgZone);
+
   readonly cards = signal(THEORY_CARDS);
   readonly expanded = signal<string | null>(null);
 
+  private hilbertRaf = 0;
+  private hilbertT = 0;
+
   toggle(id: string): void {
     this.expanded.update(cur => cur === id ? null : id);
+  }
+
+  ngAfterViewInit(): void {
+    this.zone.runOutsideAngular(() => this.initHilbertCanvas());
+  }
+
+  ngOnDestroy(): void {
+    cancelAnimationFrame(this.hilbertRaf);
+  }
+
+  private initHilbertCanvas(): void {
+    const canvas = this.hilbertCanvasRef.nativeElement;
+    const SCALE = 0.3;
+    canvas.width = window.innerWidth * SCALE;
+    canvas.height = window.innerHeight * SCALE;
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.imageRendering = 'pixelated';
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth * SCALE;
+      canvas.height = window.innerHeight * SCALE;
+    });
+
+    const ctx = canvas.getContext('2d')!;
+
+    const sources = [
+      { kx: 1.5, ky: 0.8, omega: 0.7 },
+      { kx: -1.0, ky: 1.2, omega: 0.9 },
+      { kx: 0.5, ky: -1.5, omega: 0.5 },
+    ];
+
+    const draw = () => {
+      this.hilbertT += 0.015;
+      const W = canvas.width, H = canvas.height;
+      const imageData = ctx.createImageData(W, H);
+      const data = imageData.data;
+
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          const nx = (x / W) * 2 * Math.PI - Math.PI;
+          const ny = (y / H) * 2 * Math.PI - Math.PI;
+
+          let re = 0, im = 0;
+          for (const s of sources) {
+            const phase = s.kx * nx + s.ky * ny - s.omega * this.hilbertT;
+            re += Math.cos(phase);
+            im += Math.sin(phase);
+          }
+          const amp = Math.sqrt(re*re + im*im) / sources.length;
+
+          const idx = (y * W + x) * 4;
+          const r = Math.round(amp * 80);
+          const g = Math.round(amp * 30);
+          const b = Math.round(amp * 140);
+          const a = Math.round(amp * 55);
+          data[idx] = r; data[idx+1] = g; data[idx+2] = b; data[idx+3] = a;
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+      this.hilbertRaf = requestAnimationFrame(draw);
+    };
+    draw();
   }
 }

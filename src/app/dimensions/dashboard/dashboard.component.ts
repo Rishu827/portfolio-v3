@@ -26,9 +26,19 @@ const FACTS = [
       <!-- Three.js canvas -->
       <canvas #threeCanvas class="three-canvas" aria-hidden="true"></canvas>
 
+      <!-- Pulse rings around sphere -->
+      <div class="pulse-rings" aria-hidden="true">
+        <div class="pulse-ring"></div>
+        <div class="pulse-ring"></div>
+        <div class="pulse-ring"></div>
+        <div class="pulse-ring"></div>
+        <div class="pulse-ring"></div>
+      </div>
+
       <!-- Hero content -->
       <div class="hero-content">
-        <div class="badge q-tag q-tag-cyan" appReveal [delay]="0">SDE3 · GOOGLE · QUANTUM RESEARCHER</div>
+        <span class="system-state">SYSTEM STATE: OBSERVING</span>
+        <div class="badge q-tag q-tag-cyan" appReveal [delay]="0">[ SDE3 · GOOGLE · QUANTUM RESEARCHER ]</div>
 
         <h1 class="hero-title" appReveal [delay]="100">
           <span appQuantumObserver>Rishabh</span>
@@ -43,7 +53,7 @@ const FACTS = [
 
         <div class="hero-ctas" appReveal [delay]="300">
           <a routerLink="/career" class="cta-primary" appMagnetic>
-            Explore Career Graph
+            Explore Career
           </a>
           <a routerLink="/lab" class="cta-secondary" appMagnetic>
             View Research
@@ -52,25 +62,31 @@ const FACTS = [
       </div>
 
       <!-- Stats widgets -->
-      <div class="widgets" appReveal [delay]="400">
-        @for (f of facts; track f.label) {
-          <div class="widget glass glass-hover">
-            <span class="widget-icon">{{ f.icon }}</span>
-            <span class="widget-value">{{ f.value }}</span>
-            <span class="widget-label">{{ f.label }}</span>
-          </div>
-        }
+      <div class="widgets-wrap" appReveal [delay]="400">
+        <div class="section-label">MEASUREMENT OUTCOMES</div>
+        <div class="widgets">
+          @for (f of facts; track f.label) {
+            <div class="widget glass glass-hover">
+              <span class="widget-icon">{{ f.icon }}</span>
+              <span class="widget-value">{{ f.value }}</span>
+              <span class="widget-label">{{ f.label }}</span>
+            </div>
+          }
+        </div>
       </div>
 
       <!-- Dimension quick-nav -->
-      <nav class="dim-nav" appReveal [delay]="500">
-        @for (dim of dims.slice(1); track dim.path) {
-          <a [routerLink]="'/' + dim.path" class="dim-card glass glass-hover">
-            <span class="dim-icon">{{ dim.icon }}</span>
-            <span class="dim-label">{{ dim.label }}</span>
-          </a>
-        }
-      </nav>
+      <div class="dim-nav-wrap" appReveal [delay]="500">
+        <div class="section-label">EXPLORE DIMENSIONS</div>
+        <nav class="dim-nav">
+          @for (dim of dims.slice(1); track dim.path) {
+            <a [routerLink]="'/' + dim.path" class="dim-card glass glass-hover">
+              <span class="dim-icon">{{ dim.icon }}</span>
+              <span class="dim-label">{{ dim.label }}</span>
+            </a>
+          }
+        </nav>
+      </div>
     </section>
   `,
   styles: [`
@@ -89,6 +105,26 @@ const FACTS = [
       pointer-events: none; z-index: 0;
       opacity: 0.5;
     }
+
+    /* Pulse rings */
+    .pulse-rings { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 0; }
+    .pulse-ring { position: absolute; border-radius: 50%; transform: translate(-50%, -50%); animation: ring-pulse 4s ease-out infinite; }
+    .pulse-ring:nth-child(1) { width: 200px;  height: 200px;  animation-delay: 0s;    border: 1.5px solid rgba(0,242,255,0.7); }
+    .pulse-ring:nth-child(2) { width: 380px;  height: 380px;  animation-delay: 0.8s;  border: 1.5px solid rgba(168,85,247,0.6); }
+    .pulse-ring:nth-child(3) { width: 560px;  height: 560px;  animation-delay: 1.6s;  border: 1px   solid rgba(0,242,255,0.5); }
+    .pulse-ring:nth-child(4) { width: 740px;  height: 740px;  animation-delay: 2.4s;  border: 1px   solid rgba(168,85,247,0.45); }
+    .pulse-ring:nth-child(5) { width: 920px;  height: 920px;  animation-delay: 3.2s;  border: 1px   solid rgba(0,242,255,0.35); }
+    @keyframes ring-pulse {
+      0%   { opacity: 0;   transform: translate(-50%, -50%) scale(0.25); }
+      15%  { opacity: 1; }
+      70%  { opacity: 0.6; }
+      100% { opacity: 0;   transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .system-state { font-family: var(--font-mono); font-size: 10px; color: rgba(0,242,255,0.5); letter-spacing: 0.2em; margin-bottom: 4px; }
+    .system-state::before { content: '■ '; color: #00F2FF; }
+
+    .section-label { font-size: 10px; font-family: var(--font-mono); color: rgba(255,255,255,0.25); letter-spacing: 0.2em; text-transform: uppercase; text-align: center; margin-bottom: 12px; }
 
     .hero-content {
       position: relative; z-index: 1;
@@ -134,25 +170,36 @@ const FACTS = [
     }
     .cta-secondary:hover { border-color: rgba(0,242,255,0.3); color: #fff; }
 
-    .widgets {
+    .widgets-wrap {
       position: relative; z-index: 1;
+      margin-top: 48px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .widgets {
       display: flex; gap: 16px; flex-wrap: wrap;
-      justify-content: center; margin-top: 48px;
+      justify-content: center;
     }
     .widget {
+      position: relative; overflow: hidden;
       display: flex; flex-direction: column;
       align-items: center; gap: 6px;
       padding: 20px 28px; min-width: 120px;
     }
+    .widget::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,242,255,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; }
+    .widget:hover::after { opacity: 1; }
     .widget-icon { font-size: 22px; }
     .widget-value { font-size: 28px; font-weight: 700; color: #00F2FF; line-height: 1; }
     .widget-label { font-size: 11px; color: rgba(255,255,255,0.65); text-align: center; }
 
-    .dim-nav {
+    .dim-nav-wrap {
       position: relative; z-index: 1;
-      display: flex; gap: 12px; flex-wrap: wrap;
-      justify-content: center; margin-top: 32px;
+      margin-top: 32px;
+      display: flex; flex-direction: column; align-items: center;
       max-width: 900px;
+    }
+    .dim-nav {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      justify-content: center;
     }
     .dim-card {
       display: flex; align-items: center; gap: 8px;

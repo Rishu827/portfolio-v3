@@ -16,7 +16,7 @@ import { BlogPost } from '../../core/models/portfolio.schema';
       <header class="page-header" appReveal>
         <span class="dim-badge q-tag q-tag-cyan">DIMENSION 6</span>
         <h1 class="page-title">Blog</h1>
-        <p class="page-sub">Writing on quantum computing, machine learning, and software engineering.</p>
+        <p class="page-sub">Thought experiments — observations that collapse quantum uncertainty into words.</p>
       </header>
 
       <!-- Tag filters -->
@@ -35,10 +35,11 @@ import { BlogPost } from '../../core/models/portfolio.schema';
       @if (featuredPost() && !activeTag()) {
         <div class="featured-wrap" appReveal [delay]="100">
           <div class="featured-post glass glass-hover">
-            <div class="featured-badge q-tag q-tag-purple">FEATURED</div>
+            <div class="featured-badge q-tag q-tag-purple">◈ OBSERVATION</div>
             <h2 class="featured-title">{{ featuredPost()!.title }}</h2>
             <p class="featured-excerpt">{{ featuredPost()!.excerpt }}</p>
             <div class="featured-meta">
+              <span class="wf-label">WAVEFUNCTION COLLAPSED ON</span>
               <span class="meta-date">{{ formatDate(featuredPost()!.date) }}</span>
               <span class="meta-dot">·</span>
               <span class="meta-read">{{ featuredPost()!.readTime }} min read</span>
@@ -63,13 +64,13 @@ import { BlogPost } from '../../core/models/portfolio.schema';
                     <button class="q-tag q-tag-cyan tag-btn" (click)="activeTag.set(t); $event.stopPropagation()">{{ t }}</button>
                   }
                 </div>
-                <span class="post-read">{{ post.readTime }}m</span>
+                <span class="post-read">{{ post.readTime }}m READ</span>
               </div>
               <h3 class="post-title">{{ post.title }}</h3>
               <p class="post-excerpt">{{ post.excerpt }}</p>
               <div class="post-footer">
                 <time class="post-date">{{ formatDate(post.date) }}</time>
-                <span class="post-arrow">→</span>
+                <span class="post-arrow post-observe">OBSERVE →</span>
               </div>
             </article>
           }
@@ -87,12 +88,14 @@ import { BlogPost } from '../../core/models/portfolio.schema';
     </div>
   `,
   styles: [`
-    .page { background: var(--color-obsidian); padding-bottom: 80px; }
+    .page { background: var(--color-obsidian); padding-bottom: 80px; position: relative; }
+    .page::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 40% at 20% 60%, rgba(0,242,255,0.015) 0%, transparent 60%), radial-gradient(ellipse 60% 30% at 80% 30%, rgba(168,85,247,0.015) 0%, transparent 60%); pointer-events: none; z-index: 0; }
 
     .page-header {
       max-width: 1000px; margin: 0 auto;
       padding: 60px 24px 24px;
       display: flex; flex-direction: column; gap: 12px;
+      position: relative; z-index: 1;
     }
     .dim-badge { font-size: 10px !important; letter-spacing: 0.15em; align-self: flex-start; }
     .page-title { font-size: clamp(32px, 5vw, 52px); font-weight: 700; color: rgba(255,255,255,0.92); }
@@ -102,6 +105,7 @@ import { BlogPost } from '../../core/models/portfolio.schema';
       max-width: 1000px; margin: 0 auto 28px;
       padding: 0 24px;
       display: flex; gap: 8px; flex-wrap: wrap;
+      position: relative; z-index: 1;
     }
     .tag-chip {
       padding: 5px 14px; border-radius: 20px;
@@ -121,18 +125,25 @@ import { BlogPost } from '../../core/models/portfolio.schema';
     .featured-wrap {
       max-width: 1000px; margin: 0 auto 28px;
       padding: 0 24px;
+      position: relative; z-index: 1;
     }
     .featured-post {
       padding: 32px;
       display: flex; flex-direction: column; gap: 14px;
     }
-    .featured-badge { font-size: 10px !important; align-self: flex-start; }
-    .featured-title { font-size: 24px; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1.3; }
+    .featured-badge {
+      font-size: 10px !important; align-self: flex-start;
+      background: rgba(0,242,255,0.08) !important;
+      border-color: rgba(0,242,255,0.25) !important;
+      color: #00F2FF !important;
+    }
+    .featured-title { font-size: 26px; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1.3; }
     .featured-excerpt { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; }
     .featured-meta {
       display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
       font-size: 12px; color: rgba(255,255,255,0.58);
     }
+    .wf-label { font-size: 9px; font-family: var(--font-mono); color: rgba(255,255,255,0.25); letter-spacing: 0.15em; }
     .meta-dot { color: rgba(255,255,255,0.2); }
     .meta-tags { display: flex; gap: 6px; margin-left: 8px; }
 
@@ -142,6 +153,7 @@ import { BlogPost } from '../../core/models/portfolio.schema';
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 16px;
+      position: relative; z-index: 1;
     }
 
     .post-card {
@@ -154,7 +166,7 @@ import { BlogPost } from '../../core/models/portfolio.schema';
     .post-top { display: flex; justify-content: space-between; align-items: center; }
     .post-tags { display: flex; gap: 5px; }
     .tag-btn { font-size: 10px !important; }
-    .post-read { font-size: 11px; color: rgba(255,255,255,0.25); font-family: var(--font-mono); }
+    .post-read { font-size: 11px; color: rgba(0,242,255,0.35); font-family: var(--font-mono); letter-spacing: 0.05em; }
 
     .post-title {
       font-size: 15px; font-weight: 600;
@@ -172,6 +184,7 @@ import { BlogPost } from '../../core/models/portfolio.schema';
     }
     .post-date { font-size: 11px; color: rgba(255,255,255,0.5); font-family: var(--font-mono); }
     .post-arrow { color: rgba(0,242,255,0.5); font-size: 14px; }
+    .post-observe { color: rgba(0,242,255,0.6); font-size: 12px; font-family: var(--font-mono); }
 
     .empty-state {
       max-width: 400px; margin: 60px auto;
