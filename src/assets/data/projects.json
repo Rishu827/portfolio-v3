@@ -6,7 +6,7 @@
     "description": "This portfolio — a zoneless Angular 21 application featuring a D3 v7 force-directed career graph, Three.js rotating icosahedron, quantum interference canvas background, and an NLP-powered agentic toolbar. Built with a custom glassmorphism design system, Tailwind v4 CSS-first tokens, and lazy-loaded 7-dimension routing.",
     "tags": ["Angular", "D3.js", "Three.js", "TypeScript"],
     "stack": ["Angular 21", "TypeScript", "D3.js v7", "Three.js", "Tailwind CSS v4"],
-    "github": "https://github.com/rishabhsinghal/portfolio",
+    "github": "https://github.com/Rishu827/portfolio-v3",
     "featured": true,
     "year": 2025
   },
