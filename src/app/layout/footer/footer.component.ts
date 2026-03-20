@@ -14,10 +14,8 @@ import { RouterLink } from '@angular/router';
           <span class="brand-sub">SDE3 · Google · Quantum Researcher · Graph Theorist</span>
         </div>
         <div class="footer-links">
-          <a href="https://github.com/rishabhsinghal" target="_blank" rel="noopener" class="footer-link">GitHub</a>
-          <a href="https://linkedin.com/in/rishabhsinghal" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
-          <a href="https://arxiv.org/abs/2408.00436" target="_blank" rel="noopener" class="footer-link">arXiv</a>
-          <a href="https://scholar.google.com/scholar?q=rishabh+singhal+qutrit" target="_blank" rel="noopener" class="footer-link">Scholar</a>
+          <a href="https://github.com/Rishu827" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+          <a href="https://www.linkedin.com/in/rishabh-singhal-036ab618b/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
         </div>
         <div class="footer-copy">
           <span>© 2025 · Built with Angular 21 + D3 + Three.js</span>
