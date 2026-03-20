@@ -109,9 +109,9 @@ const TOPICS = [
           <span class="form-icon">✦</span>
           <div class="form-header-text">
             <h2 class="form-title">Leave a message</h2>
-            <p class="form-sub">Comment, suggestion, or feedback — completely anonymous</p>
+            <p class="form-sub">Comment, suggestion, or feedback.</p>
           </div>
-          <span class="form-anon-badge q-tag">ANONYMOUS</span>
+          <span class="form-anon-badge q-tag">GREETINGS</span>
         </div>
         <div class="form-wrap glass">
           <iframe
@@ -259,6 +259,7 @@ const TOPICS = [
       height: 680px;
       border: none;
       background: transparent;
+      filter: invert(0.92) hue-rotate(180deg) brightness(0.95);
     }
 
     /* ── Status ──────────────────────────────────────── */
@@ -291,7 +292,7 @@ const TOPICS = [
     @media (max-width: 600px) {
       .channels-grid { grid-template-columns: 1fr; }
       .topics-grid   { grid-template-columns: 1fr; }
-      .form-iframe   { height: 780px; }
+      .form-iframe   { height: 780px; filter: invert(0.92) hue-rotate(180deg) brightness(0.95); }
     }
   `]
 })
