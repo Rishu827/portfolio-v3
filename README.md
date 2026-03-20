@@ -31,6 +31,7 @@ A personal portfolio built with **Angular 21**, featuring interactive 3D graphic
 | `/theory` | Theoretical computing — expandable cards with KaTeX math equations |
 | `/achievements` | Awards, certifications, and grants |
 | `/blog` | Blog posts with tag filtering |
+| `/contact` | Contact — LinkedIn, email, GitHub, and embedded feedback form |
 
 ---
 
@@ -193,6 +194,22 @@ The blog page extends the measurement metaphor to writing itself — each post i
 - The featured post is badged as `◈ OBSERVATION`
 - Post dates are labelled `WAVEFUNCTION COLLAPSED ON {date}` — the act of publishing is the measurement event that fixes the outcome
 - The read action on each card is labelled `OBSERVE →`, not "read", reinforcing that engaging with an idea is itself an act of quantum observation
+
+---
+
+### Contact — Quantum Tunneling
+
+The contact page is themed around **quantum tunneling** — the phenomenon where a particle's wavefunction penetrates a potential energy barrier and re-emerges on the far side, even though classically it has insufficient energy to cross.
+
+- The subtitle reads: *"Quantum tunneling — signals that bridge the potential barrier between dimensions"*
+- The background renders **9 horizontal wave stripes** travelling rightward. At the barrier (~42% of the canvas width), each wave's amplitude decays exponentially: `ψ(x) ∝ e^{−κx}` where `κ = √(2m(V−E))/ħ`. On the far side, the wave re-emerges at 30% of its original amplitude — the transmission coefficient `|T|²`
+- The barrier itself glows with a soft cyan gradient, representing the potential energy region `V > E` that a classical particle could not cross but a quantum particle can tunnel through
+- Each contact channel is a different **transmission path** — a signal tunnelling through to reach the other side:
+  - **LinkedIn** `⬡` — professional network, cyan channel
+  - **Email** `◈` — direct line, purple channel
+  - **GitHub** `⬢` — code collaboration, green channel
+- An **embedded Google Form** sits below the channels for comments, suggestions, or feedback — no account required
+- The page status reads `SIG-2025-∞`, logged like a detector event recording a tunnelled signal
 
 ---
 
