@@ -140,7 +140,7 @@ export class NeuralFlowComponent implements OnInit, AfterViewInit, OnDestroy {
   private nodes: { x: number; y: number; vx: number; vy: number }[] = [];
 
   ngOnInit(): void {
-    this.http.get<Experience[]>('/assets/data/experience.json').subscribe(data => {
+    this.http.get<Experience[]>('assets/data/experience.json').subscribe(data => {
       this.experiences.set(data);
     });
   }

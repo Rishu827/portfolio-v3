@@ -44,5 +44,11 @@ export const routes: Routes = [
       import('./dimensions/blog/blog.component').then(m => m.BlogComponent),
     title: 'Blog — The Observer Effect'
   },
+  {
+    path: 'contact',
+    loadComponent: () =>
+      import('./dimensions/contact/contact.component').then(m => m.ContactComponent),
+    title: 'Contact — The Observer Effect'
+  },
   { path: '**', redirectTo: '' }
 ];

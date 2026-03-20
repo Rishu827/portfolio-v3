@@ -329,10 +329,10 @@ export class CareerGraphComponent implements AfterViewInit, OnDestroy {
   private atomScrollHandler?: () => void;
 
   ngAfterViewInit(): void {
-    this.http.get<Experience[]>('/assets/data/experience.json').subscribe(d => {
+    this.http.get<Experience[]>('assets/data/experience.json').subscribe(d => {
       this.experiences.set(d);
     });
-    this.http.get<CareerGraph>('/assets/data/career-nodes.json').subscribe(data => {
+    this.http.get<CareerGraph>('assets/data/career-nodes.json').subscribe(data => {
       this.graphData = data;
     });
     // Default tab is timeline — init canvas after view renders

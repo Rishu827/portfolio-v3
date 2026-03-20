@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy": "ng build --base-href=/portfolio-v3/ && npx angular-cli-ghpages --dir=dist/portfolio-v3/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -34,6 +35,7 @@
     "@angular/cli": "^21.2.3",
     "@angular/compiler-cli": "^21.2.0",
     "@types/katex": "^0.16.8",
+    "angular-cli-ghpages": "^3.0.2",
     "prettier": "^3.8.1",
     "typescript": "~5.9.2"
   }
