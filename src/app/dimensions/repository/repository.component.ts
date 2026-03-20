@@ -312,7 +312,7 @@ export class RepositoryComponent implements OnInit, AfterViewInit, OnDestroy {
   });
 
   ngOnInit(): void {
-    this.http.get<Project[]>('/assets/data/projects.json').subscribe(data => {
+    this.http.get<Project[]>('assets/data/projects.json').subscribe(data => {
       this.projects.set(data);
     });
   }

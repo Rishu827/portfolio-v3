@@ -230,7 +230,7 @@ export class BlogComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.http.get<BlogPost[]>('/assets/data/blog-posts.json').subscribe(data => {
+    this.http.get<BlogPost[]>('assets/data/blog-posts.json').subscribe(data => {
       this.posts.set(data);
     });
   }

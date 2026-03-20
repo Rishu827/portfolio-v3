@@ -225,7 +225,7 @@ export class LabComponent implements OnInit, AfterViewInit, OnDestroy {
   });
 
   ngOnInit(): void {
-    this.http.get<Publication[]>('/assets/data/publications.json').subscribe(d => this.pubs.set(d));
+    this.http.get<Publication[]>('assets/data/publications.json').subscribe(d => this.pubs.set(d));
   }
 
   ngAfterViewInit(): void {

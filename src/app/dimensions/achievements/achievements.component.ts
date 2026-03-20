@@ -182,7 +182,7 @@ export class AchievementsComponent implements OnInit, AfterViewInit, OnDestroy {
   );
 
   ngOnInit(): void {
-    this.http.get<Achievement[]>('/assets/data/achievements.json').subscribe(d => {
+    this.http.get<Achievement[]>('assets/data/achievements.json').subscribe(d => {
       this.achievements.set(d);
     });
   }
