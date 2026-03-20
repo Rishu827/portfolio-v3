@@ -1,0 +1,80 @@
+[
+  {
+    "id": "pub-qutrit-msd",
+    "title": "A Search for High-Threshold Qutrit Magic State Distillation Routines",
+    "authors": ["Rishabh Singhal"],
+    "venue": "arXiv preprint (arXiv:2408.00436)",
+    "year": 2024,
+    "type": "paper",
+    "abstract": "Magic state distillation is a key subroutine in fault-tolerant quantum computation. This work investigates magic state distillation for qutrits — three-level quantum systems — and searches systematically for distillation routines with high distillation thresholds. By analysing the qutrit stabiliser formalism and constructing candidate distillation circuits from self-dual additive codes over GF(9), we identify routines that surpass previously known thresholds, advancing the resource cost analysis for qutrit-based universal fault-tolerant quantum computers.",
+    "arxiv": "2408.00436",
+    "tags": ["Quantum Computing", "Qutrits", "Magic State Distillation", "Fault-Tolerant QC"],
+    "equations": [
+      "\\mathcal{F}(\\rho, |T\\rangle) = \\langle T | \\rho | T \\rangle",
+      "p_{\\text{threshold}}: \\quad \\mathcal{F}_{\\text{out}} > \\mathcal{F}_{\\text{in}} \\iff p < p_{\\text{threshold}}"
+    ]
+  },
+  {
+    "id": "pub-graph-coloring",
+    "title": "A Novel Heuristic for Estimating Two-Colorability for Conflict-Free Coloring in Simple Graphs",
+    "authors": ["Rishabh Singhal"],
+    "venue": "Advances in Intelligent Systems and Computing, Springer",
+    "year": 2020,
+    "type": "paper",
+    "abstract": "Conflict-free coloring requires each vertex's neighbourhood to contain at least one uniquely colored vertex. Determining two-colorability for conflict-free coloring is NP-hard in general. This paper presents a novel heuristic for estimating whether a simple graph admits a conflict-free two-coloring, based on structural graph properties and a greedy exploration strategy, achieving high accuracy on benchmark graphs.",
+    "doi": "10.1007/978-981-15-8025-3_33",
+    "tags": ["Graph Theory", "Algorithms", "Graph Coloring", "Combinatorics"],
+    "equations": [
+      "\\forall v \\in V,\\ \\exists u \\in N[v]: |\\{w \\in N[w] : c(w) = c(u)\\}| = 1",
+      "\\chi_{CF}(G) = \\min k : G \\text{ has a conflict-free } k\\text{-coloring}"
+    ]
+  },
+  {
+    "id": "pub-thesis",
+    "title": "On Quantum Computing and Quantum Error Correction Using Self-Dual Additive Codes over GF(9)",
+    "authors": ["Rishabh Singhal"],
+    "venue": "B.Tech Thesis, Faculty of Engineering, Dayalbagh Educational Institute",
+    "year": 2021,
+    "type": "thesis",
+    "abstract": "This thesis investigates quantum error correction for qutrits (three-level quantum systems) using self-dual additive codes over the finite field GF(9). It develops the algebraic framework for encoding quantum information in qutrit stabiliser codes, analyses the distance properties and error-correction capabilities of these codes, and explores connections to classical coding theory. The work culminates in the construction of efficient qutrit error-correcting codes and a study of their fault-tolerant properties, laying the groundwork for subsequent research in qutrit magic state distillation.",
+    "pdf": "https://drive.google.com/file/d/1NsScPFLk9PQms2xLDZ_NARfSLM-kqNx-/view?usp=sharing",
+    "tags": ["Quantum Error Correction", "Qutrits", "GF(9)", "Stabiliser Codes"],
+    "equations": [
+      "[[n, k, d]]_3 \\text{ qutrit code encodes } k \\text{ qutrits into } n \\text{ with distance } d",
+      "S = \\langle g_1, \\ldots, g_{n-k} \\rangle \\leq \\mathcal{P}_n^{(3)}"
+    ]
+  },
+  {
+    "id": "pub-qip-poster",
+    "title": "Aspects of Qutrit Magic State Distillation",
+    "authors": ["Rishabh Singhal"],
+    "venue": "Quantum Information Processing (QIP) 2022",
+    "year": 2022,
+    "type": "poster",
+    "abstract": "A poster presentation at QIP 2022 surveying key aspects of magic state distillation for qutrits, including threshold analysis, resource overhead, and connections to self-dual additive codes over GF(9). The work bridges classical coding theory and fault-tolerant quantum computation for qutrit systems.",
+    "pdf": "https://drive.google.com/file/d/1DsQM56dCjjtuIE4Xx49RRDsF10HGB6Q7/view?usp=sharing",
+    "tags": ["Magic State Distillation", "Qutrits", "QIP", "Fault-Tolerant QC"]
+  },
+  {
+    "id": "pub-patent",
+    "title": "Heuristic Method for Estimating Two-Colorability in Conflict-Free Graph Coloring",
+    "authors": ["Rishabh Singhal"],
+    "venue": "IP Australia — Patent No. 2021104261",
+    "year": 2021,
+    "type": "patent",
+    "abstract": "A patented heuristic method for efficiently estimating whether a simple graph admits a conflict-free two-coloring. The method uses structural graph properties to guide a greedy search, providing a practical polynomial-time approximation to an NP-hard decision problem with applications in frequency assignment, RFID networks, and wireless communication.",
+    "url": "https://ipsearch.ipaustralia.gov.au/patents/2021104261",
+    "tags": ["Patent", "Graph Theory", "Graph Coloring", "Algorithms"]
+  },
+  {
+    "id": "pub-automobile",
+    "title": "Productivity Improvement and Capacity Enhancement of an Automobile Industry: A Case Study",
+    "authors": ["Rishabh Singhal"],
+    "venue": "International Journal of Engineering Research & Technology (IJERT), Vol. 6, Issue 11",
+    "year": 2017,
+    "type": "paper",
+    "abstract": "A case study analysing productivity improvement strategies and capacity enhancement techniques in an automobile manufacturing facility. The study employs industrial engineering methodologies including time-motion studies, value stream mapping, and bottleneck analysis to identify and quantify improvement opportunities, achieving measurable gains in throughput and reduction in cycle time.",
+    "doi": "10.17577/IJERTV6IS110230",
+    "tags": ["Industrial Engineering", "Productivity", "Capacity Planning", "Case Study"]
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ach-mitacs",
+    "title": "MITACS Globalink Research Internship Award",
+    "org": "MITACS, Canada",
+    "year": 2020,
+    "description": "Competitive award funding a research internship at the University of Northern British Columbia (UNBC) under Prof. Alex Aravind — Big Data Analysis using Graphlets.",
+    "type": "grant"
+  },
+  {
+    "id": "ach-quantum-winter-hackathon",
+    "title": "First Position — Quantum Winter Hackathon 2020",
+    "org": "BosonQPsi · Quantum Computing India · IBM Qiskit",
+    "year": 2020,
+    "description": "Secured first place in the Quantum Winter Hackathon 2020, organised by BosonQPsi, Quantum Computing India, International Society for Computational Fluid Dynamics, and IBM Qiskit.",
+    "type": "competition"
+  },
+  {
+    "id": "ach-ibm-challenge",
+    "title": "Rank 183 Globally — IBM Quantum Challenge 2020",
+    "org": "IBM Quantum",
+    "year": 2020,
+    "description": "Achieved rank 183 globally in the IBM Quantum Challenge 2020, a worldwide competition testing quantum computing skills on IBM Quantum hardware.",
+    "type": "competition"
+  },
+  {
+    "id": "ach-iquack",
+    "title": "Certificate of Recognition — iQuHACK 2021",
+    "org": "MIT (Annealing Division)",
+    "year": 2021,
+    "description": "Received Certificate of Recognition at iQuHACK 2021 (MIT's second annual interdisciplinary Quantum HACKathon) in the Annealing Division.",
+    "type": "competition"
+  },
+  {
+    "id": "ach-ibm-course",
+    "title": "IBM Quantum Computing Course — Global Selection",
+    "org": "IBM & The Coding School",
+    "year": 2020,
+    "description": "Selected for the one-year quantum computing course offered by IBM and The Coding School, open to only 5,000 candidates globally (October 2020).",
+    "type": "certification"
+  },
+  {
+    "id": "ach-undergrad-research",
+    "title": "Undergraduate Research Award",
+    "org": "Dayalbagh Educational Institute",
+    "year": 2020,
+    "description": "Received the Undergraduate Research Award conferred annually by the Department of Physics and Computer Science, Dayalbagh Educational Institute, Agra (October 2020).",
+    "type": "award"
+  },
+  {
+    "id": "ach-gate",
+    "title": "Top 5% — GATE 2021",
+    "org": "IIT (Graduate Aptitude Test in Engineering)",
+    "year": 2021,
+    "description": "Among the top 5% of candidates who appeared for the Graduate Aptitude Test in Engineering (GATE) 2021, one of India's most competitive national-level engineering exams.",
+    "type": "certification"
+  },
+  {
+    "id": "ach-teqip",
+    "title": "TEQIP Internship Award",
+    "org": "TEQIP — IIT Hyderabad",
+    "year": 2019,
+    "description": "Received the TEQIP Internship Award conferred by TEQIP–IIT Hyderabad to undergraduate students in India, supporting research in social network analysis and graph algorithms.",
+    "type": "grant"
+  },
+  {
+    "id": "ach-eigensolvers",
+    "title": "Mentor — EigenSolvers Quantum School",
+    "org": "EigenSolvers & ISTE NIT Calicut",
+    "year": 2021,
+    "description": "Served as a mentor at The EigenSolvers Quantum School conducted by EigenSolvers and ISTE NIT Calicut (July 2021), teaching quantum computing fundamentals.",
+    "type": "award"
+  },
+  {
+    "id": "ach-ncsc",
+    "title": "National Level Presentation — NCSC 2014",
+    "org": "National Children Science Congress, Bangalore",
+    "year": 2014,
+    "description": "National level project presentation on 'Understanding Weather And Climate Through Phenology Of Flora And Fauna' at National Children Science Congress, Bangalore 2014.",
+    "type": "award"
+  }
+]

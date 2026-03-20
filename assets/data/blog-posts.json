@@ -1,0 +1,62 @@
+[
+  {
+    "id": "blog-qutrit-msd",
+    "slug": "qutrit-magic-state-distillation",
+    "title": "Qutrit Magic State Distillation: From Codes over GF(9) to Fault-Tolerant Thresholds",
+    "excerpt": "A walkthrough of the qutrit stabiliser formalism, self-dual additive codes over GF(9), and how we searched for distillation routines with thresholds exceeding prior art — the research behind arXiv:2408.00436.",
+    "date": "2024-08-15",
+    "readTime": 14,
+    "tags": ["Quantum Computing", "Qutrits", "Research", "Fault-Tolerant QC"],
+    "featured": true
+  },
+  {
+    "id": "blog-conflict-free-coloring",
+    "slug": "conflict-free-graph-coloring-patent",
+    "title": "From Research to Patent: Conflict-Free Graph Coloring and My Springer Publication",
+    "excerpt": "How I designed a novel heuristic for estimating two-colorability for conflict-free coloring in simple graphs, got it published in Springer AISC, and obtained Australian patent 2021104261.",
+    "date": "2021-06-10",
+    "readTime": 10,
+    "tags": ["Graph Theory", "Research", "Algorithms", "Patent"],
+    "featured": true
+  },
+  {
+    "id": "blog-amazon-event-driven",
+    "slug": "event-driven-microservices-amazon-delivery",
+    "title": "Building 200K-events/day Infrastructure at Amazon Delivery",
+    "excerpt": "How we architected the Background Check Transparency Platform at Amazon Delivery — AWS Lambda, SNS/SQS, DynamoDB Streams, and a cluster-based ETA prediction engine — processing 200K+ daily vendor events with full fault tolerance.",
+    "date": "2025-01-20",
+    "readTime": 11,
+    "tags": ["AWS", "Distributed Systems", "Amazon", "Event-Driven"],
+    "featured": true
+  },
+  {
+    "id": "blog-d3-keysight",
+    "slug": "d3js-real-time-instrument-visualisation",
+    "title": "Real-Time Signal Visualisation with D3.js and Angular at Keysight",
+    "excerpt": "How I built interactive real-time charts for digitised DMM and oscilloscope signals at Keysight Technologies — integrating SCPI remote commands with an Angular + D3.js frontend and multithreaded C++ backend.",
+    "date": "2022-03-05",
+    "readTime": 8,
+    "tags": ["D3.js", "Angular", "C++", "Signal Processing"],
+    "featured": false
+  },
+  {
+    "id": "blog-mitacs-graphlets",
+    "slug": "graphlet-analysis-complex-networks",
+    "title": "Understanding Complex Networks through Graphlet Analysis — MITACS Internship",
+    "excerpt": "My MITACS Globalink research experience at the University of Northern British Columbia — designing efficient algorithms for graphlet and orbit enumeration, and applying them to real-world network data under Prof. Alex Aravind.",
+    "date": "2020-09-01",
+    "readTime": 9,
+    "tags": ["Graph Theory", "Network Analysis", "Research", "Algorithms"],
+    "featured": false
+  },
+  {
+    "id": "blog-quantum-hackathons",
+    "slug": "quantum-hackathons-ibm-iquack",
+    "title": "Winning Quantum Hackathons: IBM Challenge, iQuHACK MIT, and Quantum Winter Hackathon",
+    "excerpt": "A reflection on my journey through quantum hackathons — from securing first place in Quantum Winter Hackathon 2020 and rank 183 globally in IBM Quantum Challenge 2020, to receiving a Certificate of Recognition at MIT's iQuHACK 2021.",
+    "date": "2021-05-15",
+    "readTime": 7,
+    "tags": ["Quantum Computing", "Hackathon", "Qiskit", "IBM Quantum"],
+    "featured": false
+  }
+]
