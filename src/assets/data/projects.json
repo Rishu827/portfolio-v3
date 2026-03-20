@@ -1,35 +1,5 @@
 [
   {
-    "id": "p-bgc-platform",
-    "title": "Background Check Transparency Platform",
-    "tagline": "Real-time BGC insights cutting driver onboarding by 0.6 days",
-    "description": "Led end-to-end design and implementation of Amazon Delivery's background check transparency platform. Architected event-driven infrastructure processing 200K+ daily third-party global vendor events. Built a cluster-based ETA prediction engine using AWS Batch and historical BGC data, delivering p50/p90 time-range predictions that drove a 5% YoY improvement in DA background check turnaround across the NA region.",
-    "tags": ["Distributed Systems", "AWS", "Event-Driven", "ML"],
-    "stack": ["Java", "AWS Lambda", "DynamoDB", "SNS/SQS", "AWS CDK", "AWS Batch"],
-    "featured": true,
-    "year": 2024
-  },
-  {
-    "id": "p-dsp-vault",
-    "title": "DSP Metadata Vault & DDRS",
-    "tagline": "$1B+ annual payment risk mitigated via fault-tolerant data vault",
-    "description": "Designed and built a scalable, fault-tolerant historical data vault for Delivery Service Partner (DSP) metadata at Amazon. Enabled audit-ready tracking of contract versions and station mappings, reducing manual finance reconciliation by 80+ hours/month and mitigating $1B+ annual payment risk. Developed the DSP Data Retrieval Service (DDRS) on ECS/Fargate with API Gateway for low-latency bulk querying.",
-    "tags": ["Distributed Systems", "AWS", "Microservices", "Data Engineering"],
-    "stack": ["Java", "DynamoDB Streams", "Lambda", "SNS", "SQS", "ECS/Fargate", "API Gateway"],
-    "featured": true,
-    "year": 2024
-  },
-  {
-    "id": "p-3p-platform",
-    "title": "Third-Party Vendor Integration Platform",
-    "tagline": "50% reduction in partner onboarding effort via config-driven orchestration",
-    "description": "Architected a scalable platform at Amazon to unify 3P vendor integrations (BGC, drug test, payroll) via config-driven orchestration. Built a low-code service catalog for partners to manage value-added services through a centralized API layer. Implemented a modular vendor adapter framework for protocol abstraction across REST, webhooks, and async events.",
-    "tags": ["Microservices", "AWS", "API Design", "Platform Engineering"],
-    "stack": ["Java", "AWS Lambda", "EventBridge", "DynamoDB", "REST", "CDK"],
-    "featured": true,
-    "year": 2023
-  },
-  {
     "id": "p-portfolio",
     "title": "The Observer Effect — Portfolio v3",
     "tagline": "Angular 21 · D3 force graph · Three.js icosahedron · NLP toolbar",
@@ -102,6 +72,7 @@
     "tags": ["Embedded Systems", "Arduino", "IoT", "Hardware", "Solar"],
     "stack": ["C++", "Arduino Mega", "HC-05 Bluetooth", "DPDT/SPDT Relays", "PWM"],
     "github": "https://github.com/Rishu827/Multi-purpose-Powerhouse",
+    "video": "https://drive.google.com/file/d/15ld4cc0AzhEH17BUeBIwcqUNAUs1dL8c/preview",
     "featured": false,
     "year": 2018
   },
@@ -109,7 +80,7 @@
     "id": "p-library-mgmt",
     "title": "Library Management Software",
     "tagline": "PyQt5 desktop app — book catalogue with price lookup and quantity billing",
-    "description": "Desktop application for managing a library's book inventory, built with PyQt5 and an SQLite backend (`LibraryDatabase.db`). The `GUI.py` module defines a `Ui_Form` PyQt5 widget with three functional methods: `setupUi()` assembles the layout from the Qt Designer `.ui` file, `findprice()` issues a `SELECT * FROM books WHERE title=?` parameterised query to retrieve book metadata and populate the price field, and `findtotal()` computes total = price × quantity and displays the result. `Data Insertion.py` and `Data Retrieval.py` provide standalone scripts for bulk-loading and dumping catalogue records. The entire application ships as a self-contained Python package with no external server dependency — the SQLite file travels with the codebase.",
+    "description": "Desktop application for managing a library's book inventory, built with PyQt5 and an SQLite backend (`LibraryDatabase.db`). The `GUI.py` module defines a `Ui_Form` PyQt5 widget with three functional methods: `setupUi()` assembles the layout from the Qt Designer `.ui` file, `findprice()` issues a parameterised query to retrieve book metadata and populate the price field, and `findtotal()` computes total = price × quantity and displays the result. `Data Insertion.py` and `Data Retrieval.py` provide standalone scripts for bulk-loading and dumping catalogue records. The entire application ships as a self-contained Python package with no external server dependency — the SQLite file travels with the codebase.",
     "tags": ["Python", "Desktop", "SQLite", "GUI"],
     "stack": ["Python", "PyQt5", "SQLite"],
     "github": "https://github.com/Rishu827/Basic-Library-Management-Software",
@@ -140,23 +111,13 @@
     "year": 2020
   },
   {
-    "id": "p-pathwave",
-    "title": "Pathwave DMM & Oscilloscope",
-    "tagline": "Real-time signal digitisation and visualisation for remote lab instruments",
-    "description": "Developed and released Pathwave Digital Multimeter and Pathwave Oscilloscope as part of Keysight's Pathwave software suite. Digitised signals from remote DMM instruments in real time and visualised them using D3.js and Angular with interactive charts. Implemented multithreaded C++ algorithms for SCPI command integration and continuous trace logging across oscilloscope digital pages.",
-    "tags": ["Angular", "D3.js", "C++", "Signal Processing"],
-    "stack": ["Angular", "TypeScript", "D3.js", "C++", "SCPI"],
-    "featured": false,
-    "year": 2021
-  },
-  {
     "id": "p-graphlet",
     "title": "Big Data Analysis using Graphlets",
     "tagline": "Efficient algorithms for graphlet and orbit enumeration on large networks",
     "description": "Research internship at the University of Northern British Columbia (MITACS Globalink) under Prof. Alex Aravind. Studied complex systems using graphlet analysis, designed and analysed efficient algorithms for graphlet and orbit enumeration, and applied them to real-world network datasets. The work involves constructing network graphs from raw data and computing graphlet metrics to extract structural insights.",
     "tags": ["Graph Theory", "Network Analysis", "Algorithms", "Research"],
     "stack": ["Python", "NetworkX", "C++"],
-    "featured": false,
+    "featured": true,
     "year": 2020
   }
 ]

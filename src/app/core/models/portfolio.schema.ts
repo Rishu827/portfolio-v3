@@ -51,6 +51,7 @@ export interface Project {
   stack: string[];
   github?: string;
   demo?: string;
+  video?: string;
   featured: boolean;
   year: number;
 }

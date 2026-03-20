@@ -3,13 +3,15 @@ import {
   ViewChild, ElementRef, AfterViewInit, OnDestroy, NgZone
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RevealDirective } from '../../core/directives/reveal.directive';
+import { MarkdownPipe } from '../../core/pipes/markdown.pipe';
 import { Project } from '../../core/models/portfolio.schema';
 
 @Component({
   selector: 'app-repository',
   standalone: true,
-  imports: [RevealDirective],
+  imports: [RevealDirective, MarkdownPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="page dimension-view">
@@ -40,23 +42,29 @@ import { Project } from '../../core/models/portfolio.schema';
           <h2 class="section-label" appReveal [delay]="100">FEATURED</h2>
           <div class="featured-grid">
             @for (p of featured(); track p.id; let i = $index) {
-              <div class="project-card featured-card glass glass-hover" appReveal [delay]="120 + i * 60">
+              <div class="project-card featured-card glass glass-hover" appReveal [delay]="120 + i * 60"
+                   (click)="toggleDesc(p.id)">
                 <div class="card-top">
                   <div class="card-icon">⬢</div>
                   <div class="card-links">
                     @if (p.github) {
-                      <a [href]="p.github" target="_blank" rel="noopener" class="icon-link" title="GitHub">
+                      <a [href]="p.github" target="_blank" rel="noopener" class="icon-link" title="GitHub" (click)="$event.stopPropagation()">
                         <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
                       </a>
                     }
                     @if (p.demo) {
-                      <a [href]="p.demo" target="_blank" rel="noopener" class="icon-link" title="Demo">↗</a>
+                      <a [href]="p.demo" target="_blank" rel="noopener" class="icon-link" title="Demo" (click)="$event.stopPropagation()">↗</a>
                     }
                   </div>
                 </div>
                 <h3 class="card-title">{{ p.title }}</h3>
                 <p class="card-tagline">{{ p.tagline }}</p>
-                <p class="card-desc">{{ p.description }}</p>
+                <div class="card-desc" [class.expanded]="expandedId() === p.id" [innerHTML]="p.description | markdown"></div>
+                @if (p.video) {
+                  <div class="card-video" (click)="$event.stopPropagation()">
+                    <iframe [src]="safeVideoUrl(p.video)" allowfullscreen allow="autoplay"></iframe>
+                  </div>
+                }
                 <div class="card-stack">
                   @for (s of p.stack.slice(0, 4); track s) {
                     <span class="q-tag q-tag-cyan">{{ s }}</span>
@@ -76,23 +84,29 @@ import { Project } from '../../core/models/portfolio.schema';
         }
         <div class="projects-grid">
           @for (p of displayed(); track p.id; let i = $index) {
-            <div class="project-card glass glass-hover" appReveal [delay]="(activeTag() ? i : i + featured().length) * 50">
+            <div class="project-card glass glass-hover" appReveal [delay]="(activeTag() ? i : i + featured().length) * 50"
+                 (click)="toggleDesc(p.id)">
               <div class="card-top">
                 <div class="card-icon small">◈</div>
                 <div class="card-links">
                   @if (p.github) {
-                    <a [href]="p.github" target="_blank" rel="noopener" class="icon-link" title="GitHub">
+                    <a [href]="p.github" target="_blank" rel="noopener" class="icon-link" title="GitHub" (click)="$event.stopPropagation()">
                       <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
                     </a>
                   }
                   @if (p.demo) {
-                    <a [href]="p.demo" target="_blank" rel="noopener" class="icon-link">↗</a>
+                    <a [href]="p.demo" target="_blank" rel="noopener" class="icon-link" (click)="$event.stopPropagation()">↗</a>
                   }
                 </div>
               </div>
               <h3 class="card-title">{{ p.title }}</h3>
               <p class="card-tagline">{{ p.tagline }}</p>
-              <p class="card-desc">{{ p.description }}</p>
+              <div class="card-desc" [class.expanded]="expandedId() === p.id" [innerHTML]="p.description | markdown"></div>
+              @if (p.video) {
+                <div class="card-video" (click)="$event.stopPropagation()">
+                  <iframe [src]="safeVideoUrl(p.video)" allowfullscreen allow="autoplay"></iframe>
+                </div>
+              }
               <div class="card-tags">
                 @for (t of p.tags.slice(0, 3); track t) {
                   <button class="q-tag q-tag-cyan tag-clickable" (click)="activeTag.set(t)">{{ t }}</button>
@@ -204,7 +218,40 @@ import { Project } from '../../core/models/portfolio.schema';
     }
     .featured-card .card-title { font-size: 18px; }
     .card-tagline { font-size: 12px; color: #00F2FF; font-weight: 500; }
-    .card-desc { font-size: 12px; color: rgba(255,255,255,0.72); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-desc {
+      font-size: 12px; color: rgba(255,255,255,0.72); line-height: 1.6;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .card-desc.expanded { -webkit-line-clamp: unset; display: block; overflow: visible; }
+
+    .card-desc :is(p, li) { margin: 0 0 6px; }
+    .card-desc ul, .card-desc ol { padding-left: 18px; margin: 0 0 6px; }
+    .card-desc li { margin-bottom: 2px; }
+    .card-desc strong { color: rgba(255,255,255,0.92); font-weight: 600; }
+    .card-desc em { color: rgba(0,242,255,0.85); font-style: italic; }
+    .card-desc code {
+      font-family: var(--font-mono); font-size: 11px;
+      background: rgba(0,242,255,0.06); border: 1px solid rgba(0,242,255,0.15);
+      border-radius: 4px; padding: 1px 5px; color: #00F2FF;
+    }
+    .card-desc a { color: #00F2FF; text-decoration: underline; }
+    .card-desc h1, .card-desc h2, .card-desc h3 {
+      font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); margin: 8px 0 4px;
+    }
+
+    .project-card { cursor: pointer; }
+
+    .card-video {
+      position: relative; width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid rgba(0,242,255,0.15);
+    }
+    .card-video iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
 
     .card-stack { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; }
     .card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
@@ -231,11 +278,21 @@ import { Project } from '../../core/models/portfolio.schema';
 export class RepositoryComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('circuitCanvas') circuitCanvasRef!: ElementRef<HTMLCanvasElement>;
 
-  private http = inject(HttpClient);
-  private zone = inject(NgZone);
+  private http      = inject(HttpClient);
+  private zone      = inject(NgZone);
+  private sanitizer = inject(DomSanitizer);
 
-  readonly projects  = signal<Project[]>([]);
-  readonly activeTag = signal<string>('');
+  readonly projects   = signal<Project[]>([]);
+  readonly activeTag  = signal<string>('');
+  readonly expandedId = signal<string | null>(null);
+
+  safeVideoUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  toggleDesc(id: string): void {
+    this.expandedId.update(cur => cur === id ? null : id);
+  }
 
   private circuitRaf = 0;
 
