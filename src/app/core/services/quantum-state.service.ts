@@ -11,6 +11,7 @@ export const DIMENSIONS = [
   { path: 'theory',       label: 'Theory',             icon: '∞', shortcut: 't' },
   { path: 'achievements', label: 'Achievements',       icon: '◎', shortcut: 'a' },
   { path: 'blog',         label: 'Blog',               icon: '✦', shortcut: 'b' },
+  { path: 'contact',      label: 'Contact',             icon: '⊙', shortcut: 'n' },
 ] as const;
 
 @Injectable({ providedIn: 'root' })
