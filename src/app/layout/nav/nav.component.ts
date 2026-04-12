@@ -23,13 +23,21 @@ import { MagneticDirective } from '../../core/directives/magnetic.directive';
       <ul class="nav-links">
         @for (dim of dims; track dim.path) {
           <li>
-            <a [routerLink]="'/' + dim.path"
-               routerLinkActive="nav-active"
-               [routerLinkActiveOptions]="{ exact: dim.path === '' }"
-               class="nav-link">
-              <span class="nav-icon">{{ dim.icon }}</span>
-              <span class="nav-label">{{ dim.label }}</span>
-            </a>
+            @if ($any(dim).externalUrl) {
+              <a [href]="$any(dim).externalUrl" target="_blank" rel="noopener noreferrer" class="nav-link">
+                <span class="nav-icon">{{ dim.icon }}</span>
+                <span class="nav-label">{{ dim.label }}</span>
+                <span class="ext-arrow">↗</span>
+              </a>
+            } @else {
+              <a [routerLink]="'/' + dim.path"
+                 routerLinkActive="nav-active"
+                 [routerLinkActiveOptions]="{ exact: dim.path === '' }"
+                 class="nav-link">
+                <span class="nav-icon">{{ dim.icon }}</span>
+                <span class="nav-label">{{ dim.label }}</span>
+              </a>
+            }
           </li>
         }
       </ul>
@@ -53,13 +61,20 @@ import { MagneticDirective } from '../../core/directives/magnetic.directive';
       <div class="mobile-drawer" (click)="mobileOpen.set(false)">
         <div class="drawer-inner" (click)="$event.stopPropagation()">
           @for (dim of dims; track dim.path) {
-            <a [routerLink]="'/' + dim.path"
-               routerLinkActive="drawer-active"
-               [routerLinkActiveOptions]="{ exact: dim.path === '' }"
-               class="drawer-link"
-               (click)="mobileOpen.set(false)">
-              <span>{{ dim.icon }}</span> {{ dim.label }}
-            </a>
+            @if ($any(dim).externalUrl) {
+              <a [href]="$any(dim).externalUrl" target="_blank" rel="noopener noreferrer"
+                 class="drawer-link" (click)="mobileOpen.set(false)">
+                <span>{{ dim.icon }}</span> {{ dim.label }} <span class="ext-arrow">↗</span>
+              </a>
+            } @else {
+              <a [routerLink]="'/' + dim.path"
+                 routerLinkActive="drawer-active"
+                 [routerLinkActiveOptions]="{ exact: dim.path === '' }"
+                 class="drawer-link"
+                 (click)="mobileOpen.set(false)">
+                <span>{{ dim.icon }}</span> {{ dim.label }}
+              </a>
+            }
           }
           <button (click)="toggleMode(); mobileOpen.set(false)" class="drawer-mode-btn">
             Switch to {{ qs.mode() === 'engineer' ? 'Researcher' : 'Engineer' }} Mode
@@ -102,6 +117,7 @@ import { MagneticDirective } from '../../core/directives/magnetic.directive';
     .nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
     .nav-active { color: #00F2FF !important; background: rgba(0,242,255,0.1) !important; }
     .nav-icon { font-size: 12px; opacity: 0.85; }
+    .ext-arrow { font-size: 11px; opacity: 0.5; margin-left: 1px; }
 
     .nav-controls { display: flex; align-items: center; gap: 8px; }
 

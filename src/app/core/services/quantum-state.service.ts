@@ -10,7 +10,7 @@ export const DIMENSIONS = [
   { path: 'repository',   label: 'Projects',           icon: '⬢', shortcut: 'r' },
   { path: 'theory',       label: 'Theory',             icon: '∞', shortcut: 't' },
   { path: 'achievements', label: 'Achievements',       icon: '◎', shortcut: 'a' },
-  { path: 'blog',         label: 'Blog',               icon: '✦', shortcut: 'b' },
+  { path: 'blog',         label: 'Blog',               icon: '✦', shortcut: 'b', externalUrl: 'https://rishabh-writes.vercel.app/' },
   { path: 'contact',      label: 'Contact',             icon: '⊙', shortcut: 'n' },
 ] as const;
 

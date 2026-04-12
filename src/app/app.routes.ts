@@ -39,12 +39,6 @@ export const routes: Routes = [
     title: 'Achievements — The Observer Effect'
   },
   {
-    path: 'blog',
-    loadComponent: () =>
-      import('./dimensions/blog/blog.component').then(m => m.BlogComponent),
-    title: 'Blog — The Observer Effect'
-  },
-  {
     path: 'contact',
     loadComponent: () =>
       import('./dimensions/contact/contact.component').then(m => m.ContactComponent),
