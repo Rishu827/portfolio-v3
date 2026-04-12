@@ -117,7 +117,19 @@
     "description": "Research internship at the University of Northern British Columbia (MITACS Globalink) under Prof. Alex Aravind. Studied complex systems using graphlet analysis, designed and analysed efficient algorithms for graphlet and orbit enumeration, and applied them to real-world network datasets. The work involves constructing network graphs from raw data and computing graphlet metrics to extract structural insights.",
     "tags": ["Graph Theory", "Network Analysis", "Algorithms", "Research"],
     "stack": ["Python", "NetworkX", "C++"],
-    "featured": true,
+    "featured": false,
     "year": 2020
+  },
+  {
+    "id": "p-neural-nets-playground",
+    "title": "Neural Network Visualizer",
+    "tagline": "Interactive step-by-step Neural Net forward & backpropagation walkthrough with mathematical derivations.",
+    "description": "An educational playground for deep learning that deconstructs the 'black box' of neural networks. Features a dual-mode interface: 'Math Mode' for stepping through forward and backward propagation with full chain-rule algebraic derivations and KaTeX-rendered equations, and 'Playground Mode' for real-time training on non-linear datasets (XOR, Circles, MNIST-like). The engine is a pure TypeScript implementation (zero ML libraries) coupled with a dynamic SVG diagram that uses `<animateMotion>` for signal dot tracking and heatmap-coded activation nodes.",
+    "tags": ["Machine Learning", "Angular", "Education", "Visualization"],
+    "stack": ["Angular", "Tailwind CSS", "KaTeX", "SVG Animations"],
+    "github": "https://github.com/Rishu827/neural-nets-playground",
+    "demo": "https://rishu827.github.io/neural-nets-playground/",
+    "featured": true,
+    "year": 2026
   }
 ]
