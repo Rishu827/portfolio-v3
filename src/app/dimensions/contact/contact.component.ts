@@ -39,6 +39,16 @@ const CHANNELS = [
     color: '#34d399',
     note: 'Open to PRs & reviews',
   },
+  {
+    icon: '⌬',
+    label: 'Topmate',
+    handle: 'rishabh_singhal27',
+    description: 'Best for personalized mentorship — career guidance, mock interviews, or dedicated 1:1 strategy sessions.',
+    href: 'https://topmate.io/rishabh_singhal27/',
+    action: 'Explore Services →',
+    color: '#FF914D',
+    note: 'Limited slots available weekly',
+  },
 ];
 
 const TOPICS = [
